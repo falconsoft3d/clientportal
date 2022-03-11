@@ -19,12 +19,16 @@ python manage.py runserver
 
 # Pasos
 ```
-1- Login , logout, registro, recuperar contraseña
-2- Mostrar Productos
-3- Mostrar Categorias
-4- Perfil de Usuario
-5- Poder Ordenar
-6- Integrar con Odoo
+1- Plantilla
+- Login
+- Logout
+- registro
+- recuperar contraseña
+- Mostrar Productos
+- Mostrar Categorias
+- Perfil de Usuario
+- Poder Ordenar
+- Integrar con Odoo
 ```
 
 

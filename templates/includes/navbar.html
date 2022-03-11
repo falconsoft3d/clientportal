@@ -13,7 +13,7 @@
         </ul>
         <ul class="navbar-nav">
             <li><a href="#" class="nav-link"> <i class="fa fa-envelope"></i> Email </a></li>
-            <li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> +34 662470645</a></li>
+            <li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> Llámanos</a></li>
         </ul> <!-- list-inline //  -->
       </div> <!-- navbar-collapse .// -->
     </div> <!-- container //  -->
@@ -63,8 +63,8 @@
                         <div class="widget-header">
                             <small class="title text-muted">Bienvenido visitante!</small>
                             <div> 
-                                <a href="#">Login</a> <span class="dark-transp"> | </span>
-                                {% comment %} <a href="{% url 'register' %}"> Registrar</a> {% endcomment %}
+                                <a href="{% url 'login' %}">Login</a> <span class="dark-transp"> | </span>
+                                <a href="{% url 'register' %}"> Registrar</a>
                             </div>
                         </div>
                         {% else  %}
