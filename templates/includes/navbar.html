@@ -33,14 +33,14 @@
                     <i class="fa fa-bars"></i> Categorias 
                 </button>
                 <div class="dropdown-menu">
-                    {% comment %} <a class="dropdown-item" href="{% url 'store' %}"> Todos </a> {% endcomment %}
-                    {% comment %} {% for category in links %}
+                    <a class="dropdown-item" href="{% url 'store' %}"> Todos </a>
+                    {% for category in links %}
                       <a class="dropdown-item" href="{{ category.get_url }}"> {{category.category_name}} </a>
-                    {% endfor %} {% endcomment %}
+                    {% endfor %}
                 </div>
             </div>  <!-- category-wrap.// -->
         </div> <!-- col.// -->
-        <a href="#" class="btn btn-outline-primary">Tienda</a>
+        <a href="{% url 'store' %}" class="btn btn-outline-primary">Tienda</a>
         <div class="col-lg  col-md-6 col-sm-12 col">
             <form action="#" class="search">
                 <div class="input-group w-100">

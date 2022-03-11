@@ -37,7 +37,8 @@
     
                 </div> <!-- card-body.// -->
             </div>
-        </article> <!-- filter-group  .// -->
+        </article> 
+        <!--
         <article class="filter-group">
             <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
@@ -66,10 +67,11 @@
                     <input type="checkbox">
                     <span class="btn btn-light"> XXL </span>
                   </label>
-            </div><!-- card-body.// -->
             </div>
-        </article> <!-- filter-group .// -->
+            </div>
+        </article>  -->
         
+        <!--
         <article class="filter-group">
             <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
@@ -83,7 +85,7 @@
                     <div class="form-row">
                     <div class="form-group col-md-6">
                       <label>Min</label>
-                      <!-- <input class="form-control" placeholder="$0" type="number"> -->
+                       <input class="form-control" placeholder="$0" type="number">
                           <select class="mr-2 form-control">
                             <option value="0">$0</option>
                             <option value="50">$50</option>
@@ -106,11 +108,11 @@
                             <option value="2000">$2000+</option>
                         </select>
                     </div>
-                    </div> <!-- form-row.// -->
+                    </div> 
                     <button class="btn btn-block btn-primary">Buscar</button>
-                </div><!-- card-body.// -->
+                </div>
             </div>
-        </article> <!-- filter-group .// -->
+        </article>  .// -->
         
     </div> <!-- card.// -->
     
@@ -142,8 +144,7 @@
                             {% comment %} <del class="price-old">$1980</del> {% endcomment %}
                         </div> <!-- price-wrap.// -->
                     </div>
-                    <a href="#" 
-                    class="btn btn-block btn-success">Agregar al Carro </a>
+                    <a href="{{ product.get_url }}" class="btn btn-block btn-success">Ver Producto</a>
                 </figcaption>
             </figure>
         </div> <!-- col.// -->
