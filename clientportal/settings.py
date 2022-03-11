@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'category',
     'sale',
     'ticket',
+    'config',
 ]
 
 MIDDLEWARE = [
