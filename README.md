@@ -20,10 +20,10 @@ python manage.py runserver
 # Pasos
 ```
 1- Plantilla
-ok - Login
-ok - Logout
-ok - registro
-ok - recuperar contraseña
+- Login
+- Logout
+- registro
+- recuperar contraseña
 - Mostrar Productos
 - Mostrar Categorias
 - Perfil de Usuario
