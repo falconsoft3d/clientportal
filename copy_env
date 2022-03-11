@@ -1,0 +1,14 @@
+SECRET_KEY=django-insecure-o%g-%rmj)tmhy79c5#&-35r_&f(%kg&!xzp(39d5oaae0mm$z_
+DEBUG=True
+
+DB_NAME=db_clientportal
+DB_HOST=localhost
+DB_USER=odoo
+DB_PASSWORD=x1234567890
+DB_PORT=5432
+
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_HOST_USER=mfalcon@falconsolutions.cl
+EMAIL_HOST_PASSWORD=password
+EMAIL_USE_TLS=True
