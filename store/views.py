@@ -5,7 +5,9 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
 from django.contrib import messages
 from .models import Product
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login')
 def store(request, category_slug=None):
     categories = None
     products = None

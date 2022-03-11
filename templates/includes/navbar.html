@@ -63,16 +63,15 @@
                         <div class="widget-header">
                             <small class="title text-muted">Bienvenido visitante!</small>
                             <div> 
-                                <a href="{% url 'login' %}">Login</a> <span class="dark-transp"> | </span>
-                                <a href="{% url 'register' %}"> Registrar</a>
+                                <a href="{% url 'login' %}">Login</a> <span class="dark-transp">
                             </div>
                         </div>
                         {% else  %}
                         <div class="widget-header">
                             <small class="title text-muted">Bienvenido {{ user.first_name }}!</small>
                             <div> 
-                                <a href="#">Dashboard</a> <span class="dark-transp"> | </span>
-                                <a href="#"> Salir</a>
+                                <a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp"> | </span>
+                                <a href="{% url 'logout' %}"> Salir</a>
                             </div>
                         </div>
                         {% endif %}
