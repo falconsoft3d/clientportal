@@ -17,4 +17,14 @@ source env/bin/activate
 python manage.py runserver
 ```
 
+# Pasos
+```
+1- Login , logout, registro, recuperar contraseña
+2- Mostrar Productos
+3- Mostrar Categorias
+4- Perfil de Usuario
+5- Poder Ordenar
+6- Integrar con Odoo
+```
+
 
