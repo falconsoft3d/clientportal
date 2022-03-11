@@ -26,10 +26,14 @@ ok - registro
 ok - recuperar contraseña
 ok - Mostrar Productos
 ok - Mostrar Categorias
+ok - Buscar productos
 - Perfil de Usuario
 - Poder Ordenar
 - ver mis ordenes
 - Integrar con Odoo
+ok - Multiples imagenes en productos
+- Ticket de soporte
+- api rest para leer productos
 ```
 
 

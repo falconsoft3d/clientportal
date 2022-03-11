@@ -17,9 +17,17 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     create_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
+    code = models.CharField(max_length=13, default="-")
     
     def get_url(self):
         return reverse('product_detail', args=[self.category.slug, self.slug])
     
     def __str__(self):
         return self.product_name
+    
+class ProductGallery(models.Model):
+    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='store/products', max_length=255)
+    
+    def __str__(self):
+        return self.product.product_name
