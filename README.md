@@ -11,4 +11,10 @@ Marlon Falcón Hernández | España | Madrid
 » linkedin: https://linkedin.com/in/marlon-falcón-3a2aa9a4
 ```
 
+# Dev
+```
+source env/bin/activate
+python manage.py runserver
+```
+
 
