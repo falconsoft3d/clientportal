@@ -45,6 +45,8 @@ ok - Multiples imagenes en productos
 ok - api rest para leer productos
 - Lista de Precios en API
 - Lista de Precios
+- Docker
+- Tabla con variantes
 ```
 
 
