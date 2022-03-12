@@ -8,18 +8,19 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide" alt="First slide [800x400]" 
-                src="{% static 'images/banners/ClientPortal_1.png' %}" data-holder-rendered="true">
+                src="{{dic_data.baner01.url}}" data-holder-rendered="true">
       </div>
       <div class="carousel-item">
         <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide" 
         alt="Second slide [800x400]" 
-        src="{% static 'images/banners/ClientPortal_2.png' %}" data-holder-rendered="true">
+        src="{{dic_data.baner02.url}}" data-holder-rendered="true">
       </div>
       <div class="carousel-item">
         <img class="d-block w-100" 
             data-src="holder.js/800x400?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide" 
             alt="Third slide [800x400]" 
-            src="{% static 'images/banners/ClientPortal_3.png' %}" data-holder-rendered="true">
+            src="{{dic_data.baner03.url}}" 
+            data-holder-rendered="true">
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

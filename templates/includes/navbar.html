@@ -8,12 +8,12 @@
       <div class="collapse navbar-collapse" id="navbarTop4">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                 <a href="#" class="nav-link">   Valencia, España </a>   
+                 <a href="#" class="nav-link">{{ dic_data.name }} / {{ dic_data.street }}</a>  
             </li>
         </ul>
         <ul class="navbar-nav">
-            <li><a href="#" class="nav-link"> <i class="fa fa-envelope"></i> Email </a></li>
-            <li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> Llámanos</a></li>
+            <li><a href="mailto: {{ dic_data.email }}" class="nav-link"> <i class="fa fa-envelope"></i> Email </a></li>
+            <li><a href="tel: {{ dic_data.phone }}" class="nav-link"> <i class="fa fa-phone"></i> Llámanos</a></li>
         </ul> <!-- list-inline //  -->
       </div> <!-- navbar-collapse .// -->
     </div> <!-- container //  -->
@@ -24,7 +24,7 @@
     <div class="row align-items-center">
         <div class="col-lg-2 col-md-3 col-6">
             <a href="{% url 'home' %}" class="brand-wrap">
-                <img class="logo" src="{% static 'images/logo-header.png' %}">
+                <img class="logo" src="{{ dic_data.logo.url }}">
             </a> <!-- brand-wrap.// -->
         </div>
         <div class="col-lg col-sm col-md col-6 flex-grow-0">
