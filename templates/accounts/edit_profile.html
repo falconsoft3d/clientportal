@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{%  block content %}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+
+    {% include 'includes/alert.html'  %}
+
+<div class="container">
+	<div class="row">
+	
+	{% include 'includes/dashboard_sidebar.html' %}
+
+	<main class="col-md-9">
+		<article class="card">
+		<header class="card-header">
+			<strong class="d-inline-block mr-3"> Edita tu perfil de usuario:  </strong>
+		</header>
+		<div class="card-body">
+			<div class="text-right">
+                <img src={{userprofile.profile_picture.url}} alt="Imagen de Perfil" width="100" style="border-radius:50px">
+            </div>
+			
+			<div class="row">
+				<div class="col-md-12">
+					<form class="" action="{% url 'edit_profile' %}" method="post" enctype="multipart/form-data">
+
+						{% csrf_token %}
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="">Nombre</label>
+								{{ user_form.first_name }}
+							</div>
+							<div class="form-group col-md-6">
+								<label for="">Apellidos</label>
+								{{ user_form.last_name }}
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="">Telefono</label>
+								{{ user_form.phone_number }}
+							</div>
+							<div class="form-group col-md-6">
+								<label for="">Imagen Perfil</label>
+								{{ profile_form.profile_picture }}
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="">Dirección</label>
+								{{ profile_form.address_line_1 }}
+							</div>
+							<div class="form-group col-md-6">
+								<label for="">Detalles Dirección</label>
+								{{ profile_form.address_line_2 }}
+							</div>
+						</div>
+
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label for="">Ciudad</label>
+								{{ profile_form.city }}
+							</div>
+							<div class="form-group col-md-4">
+								<label for="">Departamento</label>
+								{{ profile_form.state }}
+							</div>
+							<div class="form-group col-md-4">
+								<label for="">Pais</label>
+								{{ profile_form.country }}
+							</div>
+						</div>
+
+						<input type="submit" name="" value="Guardar" class="btn btn-primary">
+
+
+					</form>	
+				</div>	
+			<div>	
+		</div> <!-- card-body .// -->
+		
+		</article> <!-- order-group.// --> 
+	</main>
+</div> <!-- row.// -->
+</div>
+
+
+</section>
+{% endblock %}
