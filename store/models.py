@@ -18,6 +18,7 @@ class Product(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
     code = models.CharField(max_length=13, default="-")
+    home = models.BooleanField(default=False)
     
     def get_url(self):
         return reverse('product_detail', args=[self.category.slug, self.slug])
