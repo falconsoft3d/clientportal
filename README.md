@@ -17,6 +17,15 @@ source env/bin/activate
 python manage.py runserver
 ```
 
+# API
+```
+Todos los productos:
+http://localhost:8000/api/products/12122132312
+
+Solo el producto con el id:1
+http://localhost:8000/api/products/12122132312/1
+```
+
 # Pasos
 ```
 ok - Plantilla
