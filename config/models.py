@@ -12,5 +12,8 @@ class AdminBase(models.Model):
     baner02 = models.ImageField(blank=True, upload_to='baner/')
     baner03 = models.ImageField(blank=True, upload_to='baner/')
     
+    cookies = models.BooleanField(default=True)
+    cookies_text = models.TextField(blank=True)
+    
     def __strt__(self):
         return self.name

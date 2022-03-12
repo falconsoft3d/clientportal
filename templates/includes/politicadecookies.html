@@ -1,12 +1,14 @@
 {% load static %}
+
+{% if dic_data.cookies %}
 <div id="barraaceptacion" style="display: block;">
     <div class="inner">
-        Solicitamos su permiso para obtener datos estadísticos de su navegación en esta web, en cumplimiento del Real 
-        Decreto-ley 13/2012. Si continúa navegando consideramos que acepta el uso de cookies.
+        {{dic_data.cookies_text}}
         <a href="javascript:void(0);" class="ok" onclick="PonerCookie();"><b>OK</b></a> | 
         <a href="{% url 'politicadecookies' %}" target="_blank" class="info">Más información</a>
     </div>
 </div>
+
  
 <script>
 function getCookie(c_name){
@@ -44,3 +46,4 @@ function PonerCookie(){
 }
 </script>
 <!--//FIN BLOQUE COOKIES-->
+{% endif %}
