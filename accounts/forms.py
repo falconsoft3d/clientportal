@@ -51,7 +51,7 @@ class UserProfileForm(forms.ModelForm):
     profile_picture = forms.ImageField(required=False, error_messages={'invalid' : ('Solo archivos Imagen')}, widget=forms.FileInput)
     class Meta:
         model = UserProfile
-        fields = ('address_line_1', 'address_line_2', 'city', 'state', 'country', 'profile_picture')
+        fields = ('address_line_1', 'address_line_2', 'city', 'state', 'country', 'profile_picture', 'vat', 'zip', 'bank', 'bank_account')
         
     def __init__(self, *args, **kwargs):
         super(UserProfileForm, self).__init__(*args, **kwargs)

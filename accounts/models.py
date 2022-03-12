@@ -82,6 +82,10 @@ class UserProfile(models.Model):
     state = models.CharField(blank=True, max_length=20)
     country = models.CharField(blank=True, max_length=20)
     token = models.CharField(blank=True, max_length=100)
+    vat = models.CharField(blank=True, max_length=100)
+    zip = models.CharField(blank=True, max_length=100)
+    bank_account = models.CharField(blank=True, max_length=100)
+    bank = models.CharField(blank=True, max_length=100)
     
     def __strt__(self):
         return self.user.first_name

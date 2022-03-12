@@ -30,11 +30,15 @@
 
 						{% csrf_token %}
 						<div class="form-row">
-							<div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
+								<label for="">NIF</label>
+								{{ profile_form.vat }}
+							</div>
+							<div class="form-group col-md-4">
 								<label for="">Nombre</label>
 								{{ user_form.first_name }}
 							</div>
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-4">
 								<label for="">Apellidos</label>
 								{{ user_form.last_name }}
 							</div>
@@ -42,7 +46,7 @@
 
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label for="">Telefono</label>
+								<label for="">Teléfono</label>
 								{{ user_form.phone_number }}
 							</div>
 							<div class="form-group col-md-6">
@@ -52,13 +56,17 @@
 						</div>
 
 						<div class="form-row">
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-4">
 								<label for="">Dirección</label>
 								{{ profile_form.address_line_1 }}
 							</div>
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-4">
 								<label for="">Detalles Dirección</label>
 								{{ profile_form.address_line_2 }}
+							</div>
+                            <div class="form-group col-md-4">
+								<label for="">Código Postal</label>
+								{{ profile_form.zip }}
 							</div>
 						</div>
 
@@ -68,12 +76,23 @@
 								{{ profile_form.city }}
 							</div>
 							<div class="form-group col-md-4">
-								<label for="">Departamento</label>
+								<label for="">Provincia</label>
 								{{ profile_form.state }}
 							</div>
 							<div class="form-group col-md-4">
-								<label for="">Pais</label>
+								<label for="">País</label>
 								{{ profile_form.country }}
+							</div>
+						</div>
+
+                        <div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="">Banco</label>
+								{{ profile_form.bank }}
+							</div>
+							<div class="form-group col-md-6">
+								<label for="">Cuenta Bancaria</label>
+								{{ profile_form.bank_account }}
 							</div>
 						</div>
 
