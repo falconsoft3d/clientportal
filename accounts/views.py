@@ -4,6 +4,7 @@ from warnings import catch_warnings
 from django.shortcuts import get_object_or_404, render, redirect
 from accounts.forms import RegistrationForm, UserForm, UserProfileForm
 from .models import Account, UserProfile
+from ticket.models import Ticket
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
@@ -13,6 +14,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.core.mail import EmailMessage
 import requests
+from ticket.models import Ticket
 
 # Create your views here.
 
@@ -202,3 +204,12 @@ def edit_profile(request):
     }
     
     return render(request, 'accounts/edit_profile.html', context)
+
+
+@login_required
+def my_tickets(request):
+    tickets = Ticket.objects.filter(user=request.user).order_by('create_date')
+    context = {
+        'tickets' : tickets,
+    }
+    return render(request, 'accounts/my_tickets.html', context)

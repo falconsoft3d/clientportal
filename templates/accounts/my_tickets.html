@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{%  block content %}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+
+    {% include 'includes/alert.html'  %}
+
+<div class="container">
+	<div class="row">
+	
+	{% include 'includes/dashboard_sidebar.html' %}
+
+	<main class="col-md-9">
+		<article class="card">
+		<header class="card-header">
+			<strong class="d-inline-block mr-3"> Tickets de soporte:  </strong>
+		</header>
+		<div class="card-body">
+			<div class="row">
+
+				
+				<div class="col-md-12">
+					<table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col"># Ticket</th>
+                                <th scope="col">Titulo</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ticket in tickets %}
+                                <tr>
+                                    <th scope="row">{{ticket.id}}</th>
+                                    <td scope="row">{{ticket.name}}</td>
+                                    <td scope="row">{{ticket.create_date}}</td>
+                                    <td scope="row">{{ticket.status}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    		
+			   </div>
+
+
+			</div> <!-- row.// -->
+		</div> <!-- card-body .// -->
+		
+		</article> <!-- order-group.// --> 
+	</main>
+</div> <!-- row.// -->
+</div>
+
+
+</section>
+{% endblock %}

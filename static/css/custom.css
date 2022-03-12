@@ -93,3 +93,8 @@ ul.thumb li img {
     text-decoration:none;
     color:#faff00;
 }
+
+
+.section-conten {
+    min-height: 500px;
+}
