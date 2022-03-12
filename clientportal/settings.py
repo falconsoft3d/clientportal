@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'sale',
     'ticket',
     'config',
+    'api',
 ]
 
 MIDDLEWARE = [
