@@ -1,11 +1,11 @@
 <aside class="col-md-3">
     <!--   SIDEBAR   -->
     <ul class="list-group">
-        <a class="list-group-item" href="#"> Dashboard </a>
-        {% comment %} <a class="list-group-item {% if '/accounts/' == request.path %} active {% endif %}" href="{% url 'dashboard' %}"> Dashboard </a>
+        <a class="list-group-item {% if '/accounts/' == request.path %} active {% endif %}" href="{% url 'dashboard' %}"> Mi Panel </a>
+        {% comment %} 
         <a class="list-group-item {% if '/my_orders/' in request.path %} active {% endif %}" href="{% url 'my_orders' %}"> Mis Ordenes </a>
-        <a class="list-group-item {% if '/edit_profile/' in request.path %} active {% endif %}" href="{% url 'edit_profile' %}"> Editar Perfil </a>
-        <a class="list-group-item {% if '/change_password/' in request.path %} active {% endif %}" href="{% url 'change_password' %}" href="#"> Cambiar password </a> {% endcomment %}
+        <a class="list-group-item {% if '/edit_profile/' in request.path %} active {% endif %}" href="{% url 'edit_profile' %}"> Editar Perfil </a>{% endcomment %}
+        <a class="list-group-item {% if '/change_password/' in request.path %} active {% endif %}" href="{% url 'change_password' %}" href="#"> Cambiar contraseña </a> 
     </ul>
     <br>
     {% comment %} <a class="btn btn-light btn-block" href="{% url 'logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Salir</span> </a>  {% endcomment %}

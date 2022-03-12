@@ -145,3 +145,29 @@ def register(request):
         'form' : form
     }
     return render(request, 'accounts/register.html', context)
+
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        current_password = request.POST['current_password']
+        new_password = request.POST['new_password']
+        confirm_password = request.POST['confirm_password']
+        user = Account.objects.get(username__exact=request.user.username)
+        
+        if new_password == confirm_password:
+            success = user.check_password(current_password)
+            if success:
+                user.set_password(new_password)
+                user.save()
+                
+                messages.success(request, 'Su contraseña a cambiado correctamente')
+                return redirect('change_password')
+            else:
+                messages.error(request, 'Por favor ingrese una contraseña valida')
+                return redirect('change_password')
+        else:
+            messages.error(request, 'El password no coicid con el actual')
+            return redirect('change_password')
+        
+    return render(request, 'accounts/change_password.html')
