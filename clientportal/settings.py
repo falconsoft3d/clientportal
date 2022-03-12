@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'accounts',
     'store',
     'category',
-    'sale',
     'ticket',
     'config',
     'api',

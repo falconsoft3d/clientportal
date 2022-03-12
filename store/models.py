@@ -10,7 +10,7 @@ class Product(models.Model):
     product_name = models.CharField(max_length=200, unique=True)
     slug = models.CharField(max_length=200, unique=True)
     description = models.TextField(max_length=500, blank=True)
-    price = models.IntegerField()
+    price = models.FloatField(default=1)
     images = models.ImageField(upload_to='photos/products')
     stock = models.IntegerField()
     is_available = models.BooleanField(default=True)
@@ -28,6 +28,15 @@ class Product(models.Model):
 class ProductGallery(models.Model):
     product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='store/products', max_length=255)
+    
+    def __str__(self):
+        return self.product.product_name
+    
+
+class AccountPrice(models.Model):
+    account = models.ForeignKey(Account, default=None, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
+    listprice = models.FloatField(default=1)
     
     def __str__(self):
         return self.product.product_name

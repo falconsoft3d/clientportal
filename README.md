@@ -42,7 +42,9 @@ ok - Buscar productos
 - Integrar con Odoo
 ok - Multiples imagenes en productos
 - Ticket de soporte
-- api rest para leer productos
+ok - api rest para leer productos
+- Lista de Precios en API
+- Lista de Precios
 ```
 
 
