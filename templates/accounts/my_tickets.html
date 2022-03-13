@@ -18,7 +18,7 @@
 		<article class="card">
 		<header class="card-header">
 			<strong class="d-inline-block mr-3"> Tickets de soporte:  </strong>
-            <button class="btn btn-primary float-right"><i class="fa fa-plus"></i></button>
+            <a class="btn btn-primary float-right" href="{% url 'home' %}"><i class="fa fa-plus"></i></a>
 		</header>
 		<div class="card-body">
 			<div class="row">
@@ -31,7 +31,7 @@
                                 <th scope="col"># Ticket</th>
                                 <th scope="col">Titulo</th>
                                 <th scope="col">Fecha</th>
-                                <th scope="col">Estado</th>
+                                {% comment %} <th scope="col">Estado</th> {% endcomment %}
                                 <th scope="col">Ver</th>
                                 <th scope="col">Borrar</th>
                             </tr>
@@ -42,7 +42,7 @@
                                     <th scope="row">{{ticket.id}}</th>
                                     <td scope="row">{{ticket.name}}</td>
                                     <td scope="row">{{ticket.create_date}}</td>
-                                    <td scope="row">{{ticket.status}}</td>
+                                    {% comment %} <td scope="row">{{ticket.status}}</td> {% endcomment %}
                                     <td scope="row"><button class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
                                     <td scope="row"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
                                 </tr>

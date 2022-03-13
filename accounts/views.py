@@ -15,6 +15,9 @@ from django.utils.encoding import force_bytes
 from django.core.mail import EmailMessage
 import requests
 from ticket.models import Ticket
+from ticket.forms import TicketForm
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -213,3 +216,31 @@ def my_tickets(request):
         'tickets' : tickets,
     }
     return render(request, 'accounts/my_tickets.html', context)
+
+@login_required
+def new_ticket(request):
+    if request.method == 'POST':
+        form = TicketForm(request.POST)
+        if form.is_valid():
+            current_user = request.user
+            subject = "Ticket:" + form.cleaned_data['title']
+            body = {
+                'text':form.cleaned_data['text'], 
+            }
+            message = "\n".join(body.values())
+            try:
+                send_mail(subject, message, 'mfalcon@falconsolutions.cl', ['mfalcon@falconsolutions.cl']) 
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+           
+            """ Salvando el ticket """ 
+            ticket = Ticket()
+            ticket.name = form.cleaned_data['title']
+            ticket.text = form.cleaned_data['title']
+            ticket.user = current_user
+            ticket.save()
+            
+            
+            return redirect ("my_tickets")
+    form = TicketForm()
+    return render(request, "accounts/new_ticket.html", {'form':form})
