@@ -1,6 +1,3 @@
-from email import message
-from typing import Type
-from warnings import catch_warnings
 from django.shortcuts import get_object_or_404, render, redirect
 from accounts.forms import RegistrationForm, UserForm, UserProfileForm
 from .models import Account, UserProfile
