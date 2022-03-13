@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{%  block content %}
+<!-- ========================= SECTION MAIN ========================= -->
+<section class="section-intro padding-y-sm">
+<div class="container">
+</div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION MAIN END// ========================= -->
+
+<!-- ========================= SECTION  ========================= -->
+<section class="section-name padding-y-sm">
+<div class="container">
+    <div class="row"> 
+            <div class="col-md-6 mx-auto">
+                <h3 class="section-title">Contacto</h3>
+                <p>
+                    Por favor nos puedes enviar un email si tienes alguna pregunta.
+                    Alguien de nuestro equipo estará feliz de conatactarlo para respoder a sus dudas lo antes posible.
+                </p>
+                <form method="post">
+                {% csrf_token %}
+                    {{form.as_p}}
+                    <button class="btn btn-primary"  type="submit">Enviar</button>
+                </form>
+    </div>
+</div>
+</div>
+</section>
+<!-- ========================= SECTION  END// ========================= -->
+</body>
+</html>
+{% endblock %}
