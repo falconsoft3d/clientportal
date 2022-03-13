@@ -37,6 +37,7 @@ ok - Mostrar Productos
 ok - Mostrar Categorias
 ok - Buscar productos
 ok - Perfil de Usuario
+- Carro de Compra
 - Poder Ordenar
 - ver mis ordenes
 - Integrar con Odoo
