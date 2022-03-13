@@ -10,7 +10,7 @@
             <aside class="col-md-6">
     <article class="gallery-wrap"> 
 
-
+        <br>
         <div class="img-big-wrap">
             <a href="#" class="pop">
                 <img class="fullImage" src="{{ single_product.images.url }}">
@@ -44,13 +44,14 @@
       
         <h2 class="title">{{ single_product.product_name }}</h2>  
         <p><b>Código:</b> {{ single_product.code }} | <b>ID:</b> {{ single_product.id }}</p>
-      
+        
+        {% if user.id is not None %}
         <div class="mb-3"> 
             <var class="price h4">{{ single_product.price }}€</var> + IVA
             <br>
             <span class="badge bg-success">STOCK: {{ single_product.stock }} UN</span>
         </div>
-      
+        {% endif %}
         <p>{{ single_product.description }}.</p>
       
       
@@ -86,9 +87,12 @@
           <h5>No tiene stock</h5>
           {% else  %}
           
+          
+          {% if user.id is not None %}
           <button type="submit"
-          class="btn  btn-primary"> 
-          <span class="text">Agregar al carro</span> <i class="fas fa-shopping-cart"></i>  
+                class="btn  btn-primary">
+            <span class="text">Agregar al carro</span> <i class="fas fa-shopping-cart"></i>
+          {% endif %}
           {% endif %}
       </article> <!-- product-info-aside .// -->
     </form>  
