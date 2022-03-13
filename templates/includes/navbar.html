@@ -40,7 +40,7 @@
                 </div>
             </div>  <!-- category-wrap.// -->
         </div> <!-- col.// -->
-        <a href="{% url 'store' %}" class="btn btn-outline-primary">Tienda</a>
+        <a href="{% url 'store' %}" class="btn btn-outline-primary">{% if user.id is None %}Catálogo{% else %}Tienda{% endif %}</a>
         <div class="col-lg  col-md-6 col-sm-12 col">
             <form action="{% url 'search' %}" class="search">
                 <div class="input-group w-100">
@@ -75,11 +75,13 @@
                             </div>
                         </div>
                         {% endif %}
-
+                        
+                        {% if user.id is not None %}
                         <a href="#" class="widget-header pl-3 ml-3">
                             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
                             <span class="badge badge-pill badge-danger notify">{{ cart_count }}</span>
                         </a>
+                        {% endif %}
                     </div> <!-- widgets-wrap.// -->
                 </div> <!-- col.// -->
     </div> <!-- row.// -->
