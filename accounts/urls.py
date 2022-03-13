@@ -11,4 +11,5 @@ urlpatterns = [
     path('change_password/', views.change_password, name='change_password'),
     path('my_tickets/', views.my_tickets, name='my_tickets'),
     path('new_ticket/', views.new_ticket, name='new_ticket'),
+    path('delete_ticket/<int:id>', views.delete_ticket, name='delete_ticket'),
 ]

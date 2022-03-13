@@ -32,7 +32,7 @@
                                 <th scope="col">Titulo</th>
                                 <th scope="col">Fecha</th>
                                 {% comment %} <th scope="col">Estado</th> {% endcomment %}
-                                <th scope="col">Ver</th>
+                                {% comment %} <th scope="col">Ver</th> {% endcomment %}
                                 <th scope="col">Borrar</th>
                             </tr>
                         </thead>
@@ -43,8 +43,8 @@
                                     <td scope="row">{{ticket.name}}</td>
                                     <td scope="row">{{ticket.create_date}}</td>
                                     {% comment %} <td scope="row">{{ticket.status}}</td> {% endcomment %}
-                                    <td scope="row"><button class="btn btn-primary"><i class="fa fa-eye"></i></button></td>
-                                    <td scope="row"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+                                    {% comment %} <td scope="row"><a class="btn btn-primary"><i class="fa fa-eye"></i></a></td> {% endcomment %}
+                                    <td scope="row"><a class="btn btn-danger" href="{% url 'delete_ticket' ticket.id %}"><i class="fa fa-trash"></i></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>

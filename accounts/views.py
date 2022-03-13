@@ -239,8 +239,16 @@ def new_ticket(request):
             ticket.text = form.cleaned_data['title']
             ticket.user = current_user
             ticket.save()
+            messages.success(request, 'Su ticket se ha creado correctamente')
             
             
             return redirect ("my_tickets")
     form = TicketForm()
     return render(request, "accounts/new_ticket.html", {'form':form})
+
+@login_required
+def delete_ticket(request, id):
+    ticket = Ticket.objects.get(id=id)
+    ticket.delete()
+    messages.success(request, 'Su ticket se ha eliminado correctamente')
+    return redirect('my_tickets')
