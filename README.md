@@ -17,6 +17,9 @@ source env/bin/activate
 python manage.py runserver
 ```
 
+# Screenshot
+![Alt text](https://github.com/falconsoft3d/pyerp/blob/master/marketing/screenshot_pyerp_1.png?raw=true "Ynext")
+
 # API
 ```
 Todos los productos:
