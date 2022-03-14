@@ -21,7 +21,11 @@
 		</header>
 		<div class="card-body">
 			<div class="text-right">
+				{% if userprofile.profile_picture %}
                 <img src={{userprofile.profile_picture.url}} alt="Imagen de Perfil" width="100" style="border-radius:50px">
+				{% else %}
+				<img src="{% static 'images/avatars/default.jpeg' %}" alt="Imagen de Perfil" width="100" style="border-radius:50px">
+				{% endif %}
             </div>
 			
 			<div class="row">

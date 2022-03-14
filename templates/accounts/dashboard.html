@@ -24,19 +24,23 @@
 			<div class="row">
 
 				<div class="col-md-6">
-						<div class="card" style="text-align:center;">
-								<div class="card-body">
-									<h5 class="card-title">Total de Ordenes</h5>
-									{% comment %} <h4>{{orders_count}}</h4> {% endcomment %}
-									<a href="#">Ver Ordenes </a>
-								</div>	
-						</div>		
+					<div class="card" style="text-align:center;">
+							<div class="card-body">
+								<h5 class="card-title">Total de Ordenes</h5>
+								<h4>{{orders_count}}</h4>
+								<a href="{% url 'my_orders' %}">Ver Ordenes </a>
+							</div>	
+					</div>		
 				</div>
 				
 				<div class="col-md-6">
 					<div class="card" style="text-align:center;">
 							<div class="card-body">
-								<img src="{{ userprofile.profile_picture.url }}" alt="Imagen de perfil" width="50" height="50" class="" style="border-radius:50%">
+								{% if userprofile.profile_picture %}
+									<img src="{{ userprofile.profile_picture.url }}" alt="Imagen de perfil" width="50" height="50" class="" style="border-radius:50%">
+								{% else %}
+									<img src="{% static 'images/avatars/default.jpeg' %}" alt="Imagen de perfil" width="50" height="50" class="" style="border-radius:50%">
+								{% endif %}
 								<p class="mb-0">{{ user.email }}</p>
 								<p>{{ user.phone_number }}</p>
 							</div>	
