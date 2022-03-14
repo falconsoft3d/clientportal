@@ -48,6 +48,7 @@ ok - api rest para leer productos
 - Lista de Precios
 - Deploy Docker
 - Tabla con variantes
+- Productos favoritos PENDIENTE
 ```
 
 

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'ticket',
     'config',
     'api',
+    'carts'
 ]
 
 MIDDLEWARE = [
@@ -79,6 +80,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'category.context_processors.menu_links',
                 'config.context_processors.admin_data',
+                'carts.context_processors.counter',
             ],
         },
     },

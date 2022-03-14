@@ -1,14 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
-
-
 {%  block content %}
 
-<!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-conten padding-y bg">
-
-    {% include 'includes/alert.html'  %}
-
+{% include 'includes/alert.html'  %}
 <div class="container">
 	<div class="row">
 	
@@ -18,23 +13,16 @@
 		<article class="card">
 		<header class="card-header">
 			<strong class="d-inline-block mr-3"> Nuevo Ticket de soporte:  </strong>
-            <a class="btn btn-primary float-right" href="{% url 'home' %}"><i class="fa fa-plus"></i></a>
 		</header>
 		<div class="card-body">
 			<div class="row">
-
-				
 				<div class="col-md-12">
-					
                     <form method="post">
                         {% csrf_token %}
                             {{form.as_p}}
                             <button class="btn btn-primary"  type="submit">Enviar</button>
                     </form>
-                    		
 			   </div>
-
-
 			</div> <!-- row.// -->
 		</div> <!-- card-body .// -->
 		

@@ -56,6 +56,8 @@
                 </div>
             </form> <!-- search-wrap .end// -->
         </div> <!-- col.// -->
+
+        <a href="{%  url 'favorites_products' %}" class="btn btn-outline-warning"><i class="fas fa-heart"></i> Favoritos</a>
         <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
                         
@@ -77,7 +79,7 @@
                         {% endif %}
                         
                         {% if user.id is not None %}
-                        <a href="#" class="widget-header pl-3 ml-3">
+                        <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
                             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
                             <span class="badge badge-pill badge-danger notify">{{ cart_count }}</span>
                         </a>

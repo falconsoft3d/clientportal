@@ -41,3 +41,11 @@ class AccountPrice(models.Model):
     
     def __str__(self):
         return self.product.product_name
+    
+    
+class AccountFavorite(models.Model):
+    account = models.ForeignKey(Account, default=None, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.product.product_name

@@ -4,28 +4,47 @@ from category.models import Category
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
 from django.contrib import messages
-from .models import Product, ProductGallery
+from .models import Product, ProductGallery, AccountFavorite
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 
 
 def store(request, category_slug=None):
     categories = None
     products = None
+    product_by_page = 9
     
-    if category_slug != None :
-        categories = get_object_or_404(Category, slug=category_slug)
-        products = Product.objects.filter(category=categories, is_available=True).order_by('-create_date')
-        paginator = Paginator(products, 9)
-        page = request.GET.get('page')
-        paged_products = paginator.get_page(page)
-        product_count = products.count()
-    else:
-        products = Product.objects.all().filter(is_available=True).order_by('-create_date')
-        paginator = Paginator(products, 9)
-        page = request.GET.get('page')
-        paged_products = paginator.get_page(page)
+    # Si mostramos los Favoritos
+    if (request.get_full_path() == '/store/favorites/'):
+        current_user = request.user
+        # Buscamos los productos favoritos para este usuario
+        favorites_products = AccountFavorite.objects.filter(account=current_user)
+        print("Filtramos por favorito")
+        print(favorites_products)
         
+        # PENDIENTE
+        products = Product.objects.filter(is_available=True).order_by('-create_date')
+        
+        # Paginamos
+        paginator = Paginator(products, product_by_page)
+        page = request.GET.get('page')
+        paged_products = paginator.get_page(page)
         product_count = products.count()
+    
+    else:
+        if category_slug != None :
+            categories = get_object_or_404(Category, slug=category_slug)
+            products = Product.objects.filter(category=categories, is_available=True).order_by('-create_date')
+            paginator = Paginator(products, product_by_page)
+            page = request.GET.get('page')
+            paged_products = paginator.get_page(page)
+            product_count = products.count()
+        else:
+            products = Product.objects.all().filter(is_available=True).order_by('-create_date')
+            paginator = Paginator(products, product_by_page)
+            page = request.GET.get('page')
+            paged_products = paginator.get_page(page)
+            product_count = products.count()
     
     context = {
         'products' : paged_products,
@@ -76,3 +95,15 @@ def search(request):
         }
         
         return render(request, 'store/store.html', context)
+
+@login_required
+def add_favorites(request, id):
+    
+    product = Product.objects.get(id=id)
+    current_user = request.user
+    account_favorite = AccountFavorite()
+    account_favorite.account = current_user
+    account_favorite.product = product
+    account_favorite.save()
+    
+    return redirect('favorites_products')
