@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container" style="margin-top: 50px;">
+    <center><i class="fas fa-check-circle" style="font-size: 72px;margin-bottom: 20px;color: #28A745;"></i></center>
+    <h2 class="text-center">El Orden se realizo con exito</h2>
+	<br>
+	<div class="text-center">
+		<a href="{% url 'store' %}" class="btn btn-success">Sigue Comprando</a>
+	</div>
+</div>
+
+<div class="container">
+    <br>
+</div>
+
+
+{% endblock %}

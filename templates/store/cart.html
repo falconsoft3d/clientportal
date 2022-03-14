@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
 <section class="section-content padding-y bg">
     <div class="container">
     {% if not cart_items %}
@@ -33,13 +34,6 @@
                 <div class="aside"><img src="{{ cart_item.product.images.url }}" class="img-sm"></div>
                 <figcaption class="info">
                     <a href="{{ cart_item.product.get_url }}" class="title text-dark">{{cart_item.product.product_name}}</a>
-                    {% comment %} <p class="text-muted small">
-                        {% if cart_item.variations.all %}
-                            {% for item in cart_item.variations.all %}
-                               <b> {{ item.variant_category | capfirst}} </b>: {{ item.variant_value | capfirst }} <br>
-                            {% endfor %}
-                        {% endif %}
-                    </p> {% endcomment %}
                 </figcaption>
             </figure>
         </td>
@@ -66,8 +60,8 @@
         </td>
         <td> 
             <div class="price-wrap"> 
-                <var class="price">$ {{ cart_item.subtotal }}</var> 
-                <small class="text-muted"> $ {{ cart_item.product.price }} cada uno </small> 
+                <var class="price"> {{ cart_item.subtotal }} €</var> 
+                <small class="text-muted">{{ cart_item.product.price }} € cada uno </small> 
             </div> <!-- price-wrap .// -->
         </td>
         <td class="text-right"> 
@@ -89,21 +83,18 @@
             <div class="card-body">
                 <dl class="dlist-align">
                   <dt>Precio Total:</dt>
-                  <dd class="text-right">${{ total }}</dd>
+                  <dd class="text-right">{{ total }} €</dd>
                 </dl>
                 <dl class="dlist-align">
                   <dt>Impuestos:</dt>
-                  <dd class="text-right"> $ {{ tax }}</dd>
+                  <dd class="text-right"> {{ tax }} €</dd>
                 </dl>
                 <dl class="dlist-align">
                   <dt>Total (PVP):</dt>
-                  <dd class="text-right text-dark b"><strong>$ {{ grand_total }}</strong></dd>
+                  <dd class="text-right text-dark b"><strong>{{ grand_total }} €</strong></dd>
                 </dl>
                 <hr>
-                {% comment %} <p class="text-center mb-3">
-                    <img src="{% static './images/misc/payments.png' %}" height="26">
-                </p> {% endcomment %}
-                <a href="{% url 'store' %}" class="btn btn-primary btn-block"> Ordenar </a>
+                <a href="{% url 'checkout' %}" class="btn btn-primary btn-block"> Ordenar </a>
                 <a href="{% url 'store' %}" class="btn btn-light btn-block">Continuar Comprando</a>
             </div> <!-- card-body.// -->
             </div> <!-- card.// -->
@@ -112,11 +103,7 @@
     
     
     </div> <!-- row.// -->
-    <!-- ============================ COMPONENT 1 END .// ================================= -->
-    
-    </div> <!-- container .//  -->
+    </div>
     {% endif %}
     </section>
-    <!-- ========================= SECTION CONTENT END// ========================= -->
-
     {% endblock %}

@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'ticket',
     'config',
     'api',
-    'carts'
+    'carts',
+    'orders',
 ]
 
 MIDDLEWARE = [
