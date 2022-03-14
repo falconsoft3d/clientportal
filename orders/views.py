@@ -62,6 +62,23 @@ def place_order(request, total=0, quantity=0):
             data.order_number = order_number
             data.save()
             
+            # Agregando las lineas de las ordenes
+            for item in cart_items:
+                orderproduct = OrderProduct()
+                orderproduct.order_id = data.id
+                orderproduct.user_id = request.user.id
+                orderproduct.product_id = item.product_id
+                orderproduct.quantity = item.quantity
+                orderproduct.product_price = item.product.price
+                orderproduct.ordered = True
+                orderproduct.save()
+                
+                # Rebajamos el stock
+                product = Product.objects.get(id=item.product_id)
+                if product.stock > 0:
+                    product.stock -= item.quantity
+                    product.save()
+            
             order = Order.objects.get(user=current_user, is_ordered=False, order_number=order_number)
             
             context = {
