@@ -3,8 +3,6 @@
 {% block content %}
 <section class="section-content padding-y bg">
     <div class="container">
-    
-    <!-- ============================ COMPONENT 1 ================================= -->
     {% if not cart_items %}
         <h2 class="text-center">El carrito de compra esta vacio</h2>
         <br>
@@ -73,7 +71,7 @@
             </div> <!-- price-wrap .// -->
         </td>
         <td class="text-right"> 
-        <a href="{% url 'remove_cart_item' cart_item.product.id  cart_item.id %}" class="btn btn-danger"> Eliminar</a>
+        <a href="{% url 'remove_cart_item' cart_item.product.id  cart_item.id %}" class="btn btn-danger"> <i class="fa fa-trash"></i> </a>
         </td>
         </tr>
 
@@ -102,10 +100,10 @@
                   <dd class="text-right text-dark b"><strong>$ {{ grand_total }}</strong></dd>
                 </dl>
                 <hr>
-                <p class="text-center mb-3">
+                {% comment %} <p class="text-center mb-3">
                     <img src="{% static './images/misc/payments.png' %}" height="26">
-                </p>
-                <a href="{% url 'checkout' %}" class="btn btn-primary btn-block"> Pagar </a>
+                </p> {% endcomment %}
+                <a href="{% url 'store' %}" class="btn btn-primary btn-block"> Ordenar </a>
                 <a href="{% url 'store' %}" class="btn btn-light btn-block">Continuar Comprando</a>
             </div> <!-- card-body.// -->
             </div> <!-- card.// -->
