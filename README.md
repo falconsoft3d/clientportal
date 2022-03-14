@@ -37,13 +37,13 @@ ok - Mostrar Productos
 ok - Mostrar Categorias
 ok - Buscar productos
 ok - Perfil de Usuario
-- Carro de Compra
-- Poder Ordenar
-- ver mis ordenes
-- Integrar con Odoo
+ok - Carro de Compra
+ok - Poder Ordenar
+ok - ver mis ordenes
 ok - Multiples imagenes en productos
-- Ticket de soporte
+ok - Ticket de soporte
 ok - api rest para leer productos
+- Integrar con Odoo
 - Lista de Precios en API
 - Lista de Precios
 - Deploy Docker
