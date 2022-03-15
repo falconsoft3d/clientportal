@@ -61,6 +61,8 @@ ok - Productos favoritos
 - Deploy Docker
 - Tabla con variantes
 - Dejar un solo nombre
+- comision de venta
+- panel de administracion
 ```
 
 

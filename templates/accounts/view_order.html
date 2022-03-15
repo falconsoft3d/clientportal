@@ -17,8 +17,10 @@
 		<article class="card">
 		<header class="card-header">
 			<strong class="d-inline-block mr-3"> Ordenes de compra: {{ order }} </strong>
-            <a class="btn btn-info float-right ml-2 mr-2" style="color:white;" href="{% url 'my_orders' %}">Volver a comprar</a>
             <a class="btn btn-primary float-right" style="color:white;" href="{% url 'my_orders' %}">Ver todas las ordenes</a>
+            <a class="btn btn-warning float-right ml-2 mr-2" style="color:white;" href="{% url 'my_orders' %}">Enviar a Favoritos</a>
+            <a class="btn btn-info float-right ml-2 mr-2" style="color:white;" href="{% url 'my_orders' %}">Volver a comprar</a>
+            
 		</header>
 		<div class="card-body">
 			<div class="row">
