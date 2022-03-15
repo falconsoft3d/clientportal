@@ -21,17 +21,14 @@ from orders.models import Order, OrderProduct
 
 @login_required(login_url='login')
 def dashboard(request):
-    # orders = Order.objects.order_by('created_at').filter(user_id=request.user.id, is_ordered=True)
-    # orders_count = orders.count()
+    orders = Order.objects.order_by('created_at').filter(user_id=request.user.id)
+    orders_count = orders.count()
     userprofile = UserProfile.objects.get(user_id = request.user.id)
-    # context = {
-    #     'orders' : orders,
-    #     'orders_count' : orders_count,
-    #     'userprofile' : userprofile,
-    # }
     
     context = {
         'userprofile' : userprofile,
+        'orders_count' : orders_count,
+        'orders' : orders,
     }
     
     return render(request, 'accounts/dashboard.html', context)
