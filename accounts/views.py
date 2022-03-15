@@ -1,3 +1,4 @@
+import imp
 from django.shortcuts import get_object_or_404, render, redirect
 from accounts.forms import RegistrationForm, UserForm, UserProfileForm
 from .models import Account, UserProfile
@@ -16,6 +17,8 @@ from ticket.forms import TicketForm
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from orders.models import Order, OrderProduct
+from carts.views import add_cart
+from store.views import add_favorites
 
 # Create your views here.
 
@@ -276,3 +279,18 @@ def view_ticket(request, id):
         'ticket' : ticket,
     }
     return render(request, 'accounts/view_ticket.html', context)
+
+
+@login_required
+def order_to_cart(request, id):
+    order_items = OrderProduct.objects.filter(order=id)
+    for item in order_items:
+        add_cart(request, item.product.id)
+    return redirect('cart')
+
+@login_required
+def order_to_favorite(request, id):
+    order_items = OrderProduct.objects.filter(order=id)
+    for item in order_items:
+        add_favorites(request, item.product.id)
+    return redirect('favorites_products')

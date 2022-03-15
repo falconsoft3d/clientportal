@@ -22,7 +22,6 @@ def store(request, category_slug=None):
         id_list = favorites_products.values_list('product', flat=True)
         
         # PENDIENTE
-        # id_list = [1, 7]
         products = Product.objects.filter(is_available=True, id__in=id_list ).order_by('-create_date')
         
         # Paginamos
@@ -30,8 +29,6 @@ def store(request, category_slug=None):
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
         product_count = products.count()
-        print("== Fin Favorito ==")
-    
     else:
         if category_slug != None :
             categories = get_object_or_404(Category, slug=category_slug)
