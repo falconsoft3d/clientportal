@@ -51,6 +51,8 @@ ok - Ticket de soporte
 ok - api rest para leer productos
 ok - Poder visualizar la orden cuando compro
 ok - Productos favoritos
+- Volver a comprar
+- Limpiar carro
 - Producto sin Imagen
 - Simplificar el regitro
 - Integrar con Odoo
