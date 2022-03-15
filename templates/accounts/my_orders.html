@@ -25,8 +25,7 @@
                         <thead>
                             <tr>
                                 <th scope="col"># Orden</th>
-                                <th scope="col">Nombre Facturación</th>
-                                <th scope="col">Teléfono</th>
+                                <th scope="col">Nombre</th>
                                 <th scope="col">Total Orden</th>
                                 <th scope="col">Fecha</th>
                                 <th scope="col">Ver</th>
@@ -37,9 +36,9 @@
                                 <tr>
                                     <th scope="row">{{order.order_number}}</th>
                                     <td scope="row">{{order.full_name}}</td>
-                                    <td scope="row">{{order.phone}}</td>
                                     <td scope="row">$ {{order.order_total}}</td>
                                     <td scope="row">{{order.created_at}}</td>
+                                    <td scope="row">{{order.status}}</td>
                                     <td scope="row"><a class="btn btn-primary" href="{% url 'view_order' order.id %}"><i class="fa fa-eye"></i></a></td>
                                 </tr>
                             {% endfor %}

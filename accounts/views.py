@@ -209,7 +209,7 @@ def edit_profile(request):
 
 @login_required
 def my_tickets(request):
-    tickets = Ticket.objects.filter(user=request.user).order_by('create_date')
+    tickets = Ticket.objects.filter(user=request.user).order_by('-create_date')
     context = {
         'tickets' : tickets,
     }
@@ -234,7 +234,7 @@ def new_ticket(request):
             """ Salvando el ticket """ 
             ticket = Ticket()
             ticket.name = form.cleaned_data['title']
-            ticket.text = form.cleaned_data['title']
+            ticket.text = form.cleaned_data['text']
             ticket.user = current_user
             ticket.save()
             messages.success(request, 'Su ticket se ha creado correctamente')
@@ -270,3 +270,12 @@ def view_order(request, id):
         'order' : id,
     }
     return render(request, 'accounts/view_order.html', context)
+
+
+@login_required
+def view_ticket(request, id):
+    ticket = Ticket.objects.get(id=id)
+    context = {
+        'ticket' : ticket,
+    }
+    return render(request, 'accounts/view_ticket.html', context)

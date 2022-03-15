@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{%  block content %}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+
+    {% include 'includes/alert.html'  %}
+
+<div class="container">
+	<div class="row">
+	
+	{% include 'includes/dashboard_sidebar.html' %}
+	<main class="col-md-9">
+		<article class="card">
+		<header class="card-header">
+			<strong class="d-inline-block mr-3"> Ticket: {{ ticket.id }} </strong>
+            <a class="btn btn-primary float-right" style="color:white;" href="{% url 'my_tickets' %}">Ver todas los tickets</a>
+		</header>
+		<div class="card-body">
+			<div class="row">
+				<div class="col-md-12">
+                    <h4>Título: {{ ticket.name }}</h4>
+                    <br>
+                    <p>{{ ticket.text }}</p>	
+			   </div>
+			</div> <!-- row.// -->
+		</div> <!-- card-body .// -->
+		
+		</article> <!-- order-group.// --> 
+	</main>
+</div> <!-- row.// -->
+</div>
+
+</section>
+{% endblock %}
