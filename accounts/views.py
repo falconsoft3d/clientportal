@@ -15,7 +15,7 @@ from ticket.models import Ticket
 from ticket.forms import TicketForm
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
-from orders.models import Order
+from orders.models import Order, OrderProduct
 
 # Create your views here.
 
@@ -254,9 +254,19 @@ def delete_ticket(request, id):
 
 @login_required
 def my_orders(request):
-    orders = Order.objects.filter(user=request.user).order_by('created_at')
-    print(orders)
+    orders = Order.objects.filter(user=request.user).order_by('-created_at')
     context = {
         'orders' : orders,
     }
     return render(request, 'accounts/my_orders.html', context)
+
+
+
+@login_required
+def view_order(request, id):
+    order_items = OrderProduct.objects.filter(order=id)
+    context = {
+        'order_items' : order_items,
+        'order' : id,
+    }
+    return render(request, 'accounts/view_order.html', context)

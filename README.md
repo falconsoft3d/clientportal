@@ -49,6 +49,9 @@ ok - ver mis ordenes
 ok - Multiples imagenes en productos
 ok - Ticket de soporte
 ok - api rest para leer productos
+- Poder visualizar la orden cuando compro
+- Producto sin imagen
+- Simplificar el regitro
 - Integrar con Odoo
 - Lista de Precios en API
 - Lista de Precios
