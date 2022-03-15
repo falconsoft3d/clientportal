@@ -50,7 +50,7 @@ ok - Multiples imagenes en productos
 ok - Ticket de soporte
 ok - api rest para leer productos
 ok - Poder visualizar la orden cuando compro
-- Producto sin imagen
+- Producto sin Imagen
 - Simplificar el regitro
 - Integrar con Odoo
 - Lista de Precios en API
