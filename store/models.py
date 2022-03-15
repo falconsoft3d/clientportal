@@ -4,6 +4,7 @@ from category.models import Category
 from django.urls import reverse
 from accounts.models import Account
 from django.db.models import Avg, Count
+from accounts.get_username import get_username
 
 # Create your models here.
 class Product(models.Model):
@@ -25,6 +26,18 @@ class Product(models.Model):
     
     def __str__(self):
         return self.product_name
+    
+    def get_list_price(product, user):
+        product_obj = Product.objects.get(id=product)
+        price = product_obj.price
+        try:
+            account_price = AccountPrice.objects.get(product=product_obj.id, account=user)
+            if account_price:
+                price = account_price.listprice
+        except Exception as e:
+            pass
+        
+        return price
     
 class ProductGallery(models.Model):
     product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load poll_extras %}
 {% block content %}
 <!-- ========================= SECTION PAGETOP ========================= -->
 <section class="section-pagetop bg">
@@ -141,7 +141,7 @@
                         <a href="{{ product.get_url }}" class="title">{{product.product_name}}</a>
                         {% if user.id is not None %}
                             <div class="price-wrap mt-2">
-                                <span class="price">{{product.price}} €</span>
+                                <span class="price">{{ product.id | get_listprice:user.id }} €</span>
                             </div> 
                         {% endif %}
                     </div>

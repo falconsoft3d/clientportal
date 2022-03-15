@@ -4,7 +4,7 @@ from category.models import Category
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
 from django.contrib import messages
-from .models import Product, ProductGallery, AccountFavorite
+from .models import Product, ProductGallery, AccountFavorite, AccountPrice
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
@@ -75,12 +75,20 @@ def product_detail(request, category_slug, product_slug):
     
     product_gallery = ProductGallery.objects.filter(product_id=single_product.id)
     favorites_product_count= AccountFavorite.objects.filter(account=current_user, product=single_product.id).count
+    price = single_product.price
     
+    try:
+        account_price = AccountPrice.objects.get(product=single_product.id, account=current_user)
+        if account_price:
+            price = account_price.listprice
+    except:
+        pass
     
     context = {
         'single_product' : single_product,
+        'price' : price,
         'product_gallery' : product_gallery,
-        'favorites_product_count' : favorites_product_count
+        'favorites_product_count' : favorites_product_count,
     }
     
     return render(request, 'store/product_detail.html', context)

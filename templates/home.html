@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load poll_extras %}
 
 {%  block content %}
 <!-- ========================= SECTION MAIN ========================= -->
@@ -37,7 +37,7 @@
 			<figcaption class="info-wrap">
 				<a href="{{ product.get_url }}" class="title">{{product.product_name}}</a>
 				{% if user.id is not None %}
-				<div class="price mt-1">{{ product.price }}€</div> <!-- price-wrap.// -->
+				<div class="price mt-1">{{ product.id | get_listprice:user.id }}€</div> <!-- price-wrap.// -->
 				{% endif %}
 				<br>
 				<a href="{{ product.get_url }}" class="btn btn-block btn-success">Ver Producto</a>	

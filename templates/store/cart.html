@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% load poll_extras %}
 
 <section class="section-content padding-y bg">
     <div class="container">
@@ -61,7 +62,7 @@
         <td> 
             <div class="price-wrap"> 
                 <var class="price"> {{ cart_item.subtotal }} €</var> 
-                <small class="text-muted">{{ cart_item.product.price }} € cada uno </small> 
+                <small class="text-muted">{{ cart_item.product.id | get_listprice:user.id }} € cada uno </small> 
             </div> <!-- price-wrap .// -->
         </td>
         <td class="text-right"> 
