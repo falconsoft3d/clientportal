@@ -4,7 +4,7 @@ from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from accounts.models import UserProfile
-
+from store.views import add_favorites
 
 def _cart_id(request):
     cart = request.session.session_key
@@ -138,6 +138,21 @@ def checkout(request, total=0, quantity=0, cart_items=None):
         
     }
     return render(request, 'orders/checkout.html', context)
+
+@login_required
+def clear_cart(request):
+    cart = Cart.objects.get(cart_id=_cart_id(request))
+    cart.delete()
+    return redirect('cart')
+
+
+@login_required
+def cart_to_favorite(request):
+    cart = Cart.objects.get(cart_id=_cart_id(request))
+    cart_items = CartItem.objects.filter(cart=cart, is_active=True)
+    for item in cart_items:
+        add_favorites(request, item.product.id)
+    return redirect('favorites_products')
     
     
     
