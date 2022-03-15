@@ -19,17 +19,18 @@ def store(request, category_slug=None):
         current_user = request.user
         # Buscamos los productos favoritos para este usuario
         favorites_products = AccountFavorite.objects.filter(account=current_user)
-        print("Filtramos por favorito")
-        print(favorites_products)
+        id_list = favorites_products.values_list('product', flat=True)
         
         # PENDIENTE
-        products = Product.objects.filter(is_available=True).order_by('-create_date')
+        # id_list = [1, 7]
+        products = Product.objects.filter(is_available=True, id__in=id_list ).order_by('-create_date')
         
         # Paginamos
         paginator = Paginator(products, product_by_page)
         page = request.GET.get('page')
         paged_products = paginator.get_page(page)
         product_count = products.count()
+        print("== Fin Favorito ==")
     
     else:
         if category_slug != None :
@@ -55,6 +56,7 @@ def store(request, category_slug=None):
 
 
 def product_detail(request, category_slug, product_slug):
+    current_user = request.user
     try:
         single_product = Product.objects.get(category__slug=category_slug, slug = product_slug)
         # in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request), product=single_product).exists()
@@ -69,14 +71,16 @@ def product_detail(request, category_slug, product_slug):
     #         orderproduct = None
     # else:
     #      orderproduct = None
-        
-        
     # reviews = ReviewRating.objects.filter(product_id=single_product.id, status=True)
+    
     product_gallery = ProductGallery.objects.filter(product_id=single_product.id)
+    favorites_product_count= AccountFavorite.objects.filter(account=current_user, product=single_product.id).count
+    
     
     context = {
         'single_product' : single_product,
         'product_gallery' : product_gallery,
+        'favorites_product_count' : favorites_product_count
     }
     
     return render(request, 'store/product_detail.html', context)
@@ -98,12 +102,25 @@ def search(request):
 
 @login_required
 def add_favorites(request, id):
+    is_fav_count =  AccountFavorite.objects.filter(product=id).count()
     
-    product = Product.objects.get(id=id)
+    if is_fav_count <=0:
+        product = Product.objects.get(id=id)
+        current_user = request.user
+        account_favorite = AccountFavorite()
+        account_favorite.account = current_user
+        account_favorite.product = product
+        account_favorite.save()
+    else:
+        pass
+    
+    return redirect('favorites_products')
+
+
+@login_required
+def delete_favorites(request, id):
     current_user = request.user
-    account_favorite = AccountFavorite()
-    account_favorite.account = current_user
-    account_favorite.product = product
-    account_favorite.save()
-    
+    favorite =  AccountFavorite.objects.filter(product=id, account=current_user)
+    if favorite.count() >= 0:
+        favorite.delete()
     return redirect('favorites_products')

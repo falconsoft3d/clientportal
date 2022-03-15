@@ -49,7 +49,7 @@ ok - ver mis ordenes
 ok - Multiples imagenes en productos
 ok - Ticket de soporte
 ok - api rest para leer productos
-- Poder visualizar la orden cuando compro
+ok - Poder visualizar la orden cuando compro
 - Producto sin imagen
 - Simplificar el regitro
 - Integrar con Odoo
@@ -57,7 +57,7 @@ ok - api rest para leer productos
 - Lista de Precios
 - Deploy Docker
 - Tabla con variantes
-- Productos favoritos PENDIENTE
+ok - Productos favoritos
 ```
 
 
