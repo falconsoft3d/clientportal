@@ -50,6 +50,7 @@ ok - Multiples imagenes en productos
 ok - Ticket de soporte
 ok - api rest para leer productos
 ok - Poder visualizar la orden cuando compro
+ok - Productos favoritos
 - Producto sin Imagen
 - Simplificar el regitro
 - Integrar con Odoo
@@ -57,7 +58,7 @@ ok - Poder visualizar la orden cuando compro
 - Lista de Precios
 - Deploy Docker
 - Tabla con variantes
-ok - Productos favoritos
+- Dejar un solo nombre
 ```
 
 
