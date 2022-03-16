@@ -14,7 +14,7 @@
         <br>
         <div class="img-big-wrap">
             <a href="#" class="pop">
-                {% if product.images %}
+                {% if single_product.images %}
                     <img class="fullImage" src="{{ single_product.images.url }}">
                 {% else %}
                     <img class="fullImage" src="{% static 'images/no_imagen_product.png' %}">
@@ -26,7 +26,7 @@
 
     <ul class="thumb">
                 <li>
-                    {% if product.images %}
+                    {% if single_product.images %}
                         <a href="{{ single_product.images.url }}" target="mainImage">
                             <img  src="{{ single_product.images.url }}" alt="imagen producto">
                         </a>
