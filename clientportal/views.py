@@ -7,10 +7,12 @@ from django.http import HttpResponse
 def home(request):
     products = Product.objects.all().filter(is_available=True, home=True).order_by('create_date')[:8]
     context = {
-        'products' : products,
-    }
-    
-    return render(request, 'home.html', context)
+            'products' : products,
+        }
+    if (products.count() == 0):
+        return render(request, 'new_project.html', context)
+    else: 
+        return render(request, 'home.html', context)
 
 
 def politicadecookies(request):    
