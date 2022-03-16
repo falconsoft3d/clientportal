@@ -47,6 +47,11 @@
 					"previous": "Anterior"
 				}
 			}, });
+
+			$('.thumb a').click(function(e){
+				e.preventDefault();
+				$('.fullImage').attr('src', $(this).attr('href'));
+			});
 	});
 </script>
 
