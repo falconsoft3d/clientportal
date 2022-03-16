@@ -21,31 +21,30 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col-md-12">
-					<table class="table table-hover">
+					<table class="display nowrap" id="dataTable">
                         <thead>
                             <tr>
-                                <th scope="col"># Orden</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Total Orden</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Ver</th>
+                                <th># Orden</th>
+                                <th>Nombre</th>
+                                <th>Total Orden</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                                <th>Ver</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for order in orders %}
                                 <tr>
-                                    <th scope="row">{{order.order_number}}</th>
-                                    <td scope="row">{{order.full_name}}</td>
-                                    <td scope="row">$ {{order.order_total}}</td>
-                                    <td scope="row">{{order.created_at}}</td>
-                                    <td scope="row">{{order.status}}</td>
-                                    <td scope="row"><a class="btn btn-primary" href="{% url 'view_order' order.id %}"><i class="fa fa-eye"></i></a></td>
+                                    <td>{{order.order_number}}</td>
+                                    <td>{{order.full_name}}</td>
+                                    <td>$ {{order.order_total}}</td>
+                                    <td>{{order.created_at}}</td>
+                                    <td>{{order.status}}</td>
+                                    <td><a class="btn btn-primary" href="{% url 'view_order' order.id %}"><i class="fa fa-eye"></i></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
-                    		
 			   </div>
 
 
@@ -56,6 +55,8 @@
 	</main>
 </div> <!-- row.// -->
 </div>
+
+
 
 
 </section>

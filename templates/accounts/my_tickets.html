@@ -25,26 +25,26 @@
 
 				
 				<div class="col-md-12">
-					<table class="table table-hover">
+					<table class="display nowrap" id="dataTable">
                         <thead>
                             <tr>
-                                <th scope="col"># Ticket</th>
-                                <th scope="col">Titulo</th>
-                                <th scope="col">Fecha</th>
-                                {% comment %} <th scope="col">Estado</th> {% endcomment %}
-                                <th scope="col">Ver</th>
-                                <th scope="col">Borrar</th>
+                                <th># Ticket</th>
+                                <th>Titulo</th>
+                                <th>Fecha</th>
+                                {% comment %} <th>Estado</th> {% endcomment %}
+                                <th>Ver</th>
+                                <th>Borrar</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for ticket in tickets %}
                                 <tr>
-                                    <th scope="row">{{ticket.id}}</th>
-                                    <td scope="row">{{ticket.name}}</td>
-                                    <td scope="row">{{ticket.create_date}}</td>
-                                    {% comment %} <td scope="row">{{ticket.status}}</td> {% endcomment %}
-                                    <td scope="row"><a class="btn btn-primary" href="{% url 'view_ticket' ticket.id %}" style="color:white;"><i class="fa fa-eye"></i></a></td>
-                                    <td scope="row"><a class="btn btn-danger" href="{% url 'delete_ticket' ticket.id %}" onclick="return confirm('Estas seguro?')"><i class="fa fa-trash"></i></a></td>
+                                    <th>{{ticket.id}}</th>
+                                    <td>{{ticket.name}}</td>
+                                    <td>{{ticket.create_date}}</td>
+                                    {% comment %} <td>{{ticket.status}}</td> {% endcomment %}
+                                    <td><a class="btn btn-primary" href="{% url 'view_ticket' ticket.id %}" style="color:white;"><i class="fa fa-eye"></i></a></td>
+                                    <td><a class="btn btn-danger" href="{% url 'delete_ticket' ticket.id %}" onclick="return confirm('Estas seguro?')"><i class="fa fa-trash"></i></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>

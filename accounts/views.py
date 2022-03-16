@@ -19,6 +19,7 @@ from django.http import HttpResponse
 from orders.models import Order, OrderProduct
 from carts.views import add_cart
 from store.views import add_favorites
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 # Create your views here.
 
@@ -255,8 +256,14 @@ def delete_ticket(request, id):
 @login_required
 def my_orders(request):
     orders = Order.objects.filter(user=request.user).order_by('-created_at')
+    # paginator = Paginator(orders, 10)
+    # page = request.GET.get('page')
+    # paged_orders = paginator.get_page(page)
+    # order_count = orders.count()
+    
     context = {
         'orders' : orders,
+        # 'order_count' : order_count,
     }
     return render(request, 'accounts/my_orders.html', context)
 
