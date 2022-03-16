@@ -34,9 +34,11 @@
                 </button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{% url 'store' %}"> Todos </a>
-                    {% for category in links %}
-                      <a class="dropdown-item" href="{{ category.get_url }}"> {{category.category_name}} </a>
-                    {% endfor %}
+                   
+                        {% for category in links %}
+                        <a class="dropdown-item" href="{{ category.get_url }}"> {{category.category_name}} </a>
+                        {% endfor %}
+                    
                 </div>
             </div>  <!-- category-wrap.// -->
         </div> <!-- col.// -->

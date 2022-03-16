@@ -71,7 +71,12 @@ def product_detail(request, category_slug, product_slug):
     # reviews = ReviewRating.objects.filter(product_id=single_product.id, status=True)
     
     product_gallery = ProductGallery.objects.filter(product_id=single_product.id)
-    favorites_product_count= AccountFavorite.objects.filter(account=current_user, product=single_product.id).count
+    if request.user.is_anonymous:
+        favorites_product_count= 0
+    else:
+        favorites_product_count= AccountFavorite.objects.filter(account=current_user, product=single_product.id).count
+        
+    
     price = single_product.price
     
     try:

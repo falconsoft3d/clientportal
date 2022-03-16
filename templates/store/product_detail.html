@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load poll_extras %}
-
+{% load static %}
 {% block content %}
 <section class="section-content padding-y bg">
     <div class="container">
@@ -14,7 +14,11 @@
         <br>
         <div class="img-big-wrap">
             <a href="#" class="pop">
-                <img class="fullImage" src="{{ single_product.images.url }}">
+                {% if product.images %}
+                    <img class="fullImage" src="{{ single_product.images.url }}">
+                {% else %}
+                    <img class="fullImage" src="{% static 'images/no_imagen_product.png' %}">
+                {% endif %}
             </a>
          </div> <!-- img-big-wrap.// -->
         
@@ -22,9 +26,15 @@
 
     <ul class="thumb">
                 <li>
-                    <a href="{{ single_product.images.url }}" target="mainImage">
-                        <img  src="{{ single_product.images.url }}" alt="imagen producto">
-                    </a>
+                    {% if product.images %}
+                        <a href="{{ single_product.images.url }}" target="mainImage">
+                            <img  src="{{ single_product.images.url }}" alt="imagen producto">
+                        </a>
+                    {% else %}
+                        <a href="#" target="mainImage">
+                            <img  src="{% static 'images/no_imagen_product.png' %}" alt="imagen producto">
+                        </a>
+                    {% endif %}
                     
             {% for i in product_gallery %}
                 
@@ -55,50 +65,20 @@
 
         <p>{{ single_product.description }}.</p>
           <hr>
-            {% comment %} <div class="row">
-                <div class="item-option-select">
-                    <h6>Seleccionar Color</h6>
-                    <select class="form-control" name="color" required>
-                        <option value="" disabled selected>Seleccione</option>
-                        {% for i in single_product.variation_set.colors %}
-                            <option value="{{ i.variant_value | lower }}">{{ i.variant_value | capfirst }}</option>
-                        {% endfor %}
-                    </select>  
-                </div>
-            </div> <!-- row.// -->
 
-            <div class="row">
-                <div class="item-option-select">
-                    <h6>Seleccione Talla</h6>
-                    <select class="form-control" name="talla" required>
-                        <option value="" disabled selected>Seleccione</option>
-                        {% for i in single_product.variation_set.tallas %}
-                            <option value="{{ i.variant_value | lower}}">{{ i.variant_value | capfirst }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div> <!-- row.// --> 
-            <hr>
-            {% endcomment %}
           
           {% if user.id is not None and favorites_product_count <= 0 %}
           <a href="{% url 'add_favorites' single_product.id %}" class="btn btn-outline-warning"><i class="fas fa-heart"></i> Agregar a Favoritos</a>
           {% else %}
             <a href="{% url 'delete_favorites' single_product.id %}" class="btn btn-warning"><i class="fas fa-heart"></i> Eliminar de Favoritos</a>
           {% endif %}
-
-        
-          {% comment %} {% if single_product.stock <= 0 %}
-          <h5 class="mt-2">No tiene stock</h5>
-          {% else  %} {% endcomment %}
-          
           
           {% if user.id is not None %}
             <button type="submit"
                 class="btn  btn-primary"> <i class="fas fa-shopping-cart"></i>
             <span class="text">Agregar al carro</span> 
           {% endif %}
-          {% comment %} {% endif %} {% endcomment %}
+          
       </article> <!-- product-info-aside .// -->
     </form>  
 
@@ -109,6 +89,4 @@
 
     </div> <!-- container .//  -->
     </section>
-    <!-- ========================= SECTION CONTENT END// ========================= -->
-
     {% endblock %}
