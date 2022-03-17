@@ -22,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = "django-insecure-o%g-%rmj)tmhy79c5#&-35r_&f(%kg&!xzp(39d5oaae0mm$z_"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool, default=True)
+DEBUG = True
 
 ALLOWED_HOSTS = ['clientportal.marlonfalcon.com','localhost','127.0.0.1']
 
@@ -102,11 +102,11 @@ AUTH_USER_MODEL = 'accounts.Account'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DB_NAME'),
-        'HOST': config('DB_HOST'),
-        'USER' : config('DB_USER'),
-        'PASSWORD' : config('DB_PASSWORD'),
-        'PORT' : config('DB_PORT')
+        'NAME': 'db_clientportal',
+        'HOST': 'localhost',
+        'USER' : 'odoo',
+        'PASSWORD' : 'x1234567890',
+        'PORT' : 5432
     }
 }
 
@@ -164,8 +164,8 @@ MESSAGE_TAGS = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT', cast=int)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'mfalcon@falconsolutions.cl'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_USE_TLS = True
