@@ -31,6 +31,8 @@ services:
         traefik.http.services.client-portal.loadbalancer.server.port: '80'
         traefik.http.routers.client-portal-https.tls: 'true'
   pgsql:
+    ports:
+      - 5432:5432
     image: postgres:14-alpine
     environment:
       POSTGRES_DB: client-portal
