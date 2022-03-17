@@ -37,6 +37,7 @@ services:
     environment:
       POSTGRES_DB: client-portal
       POSTGRES_PASSWORD: x1234567890
+      POSTGRES_USER: odoo
     volumes:
      - client-portal_data:/var/lib/postgresql/data
     networks:
