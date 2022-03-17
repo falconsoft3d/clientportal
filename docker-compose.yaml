@@ -40,16 +40,16 @@ services:
     volumes:
      - django-docker_data:/var/lib/postgresql/data
     networks:
-     - django-docker_net
+     - client-portal_net
     logging:
       driver: json-file
 networks:
-  django-docker_net:
+  client-portal_net:
     driver: overlay
-  django_docker_net:
+  client-portal_net:
     driver: overlay
   traefik:
     external: true
 volumes:
-  django-docker_data:
+  client-portal_data:
     driver: local
