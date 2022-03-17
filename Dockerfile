@@ -10,7 +10,7 @@ RUN rm -Rf /etc/nginx/conf.d/default.conf
 COPY conf/nginx.conf /etc/nginx
 COPY conf/nginx-app.conf /etc/nginx/sites-enabled/app.conf
 
-ADD docker .
+ADD . .
 ADD requirements.txt .
 RUN pip install -r /app/requirements.txt
 RUN python manage.py collectstatic --clear --traceback --noinput;
