@@ -59,7 +59,7 @@ ok - Limpiar carro
 - Lista de Precios en API
 - Lista de Precios
 - Deploy Docker
-- Tabla con variantes
+- Tabla con variantes en la compra
 - Dejar un solo nombre
 - comision de venta
 - panel de administracion

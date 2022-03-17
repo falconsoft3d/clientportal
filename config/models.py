@@ -16,6 +16,7 @@ class AdminBase(models.Model):
     cookies_text = models.TextField(blank=True)
     
     commission = models.IntegerField(default=5)
+    mode_demo = models.BooleanField(default=False)
     
     def __strt__(self):
         return self.name
