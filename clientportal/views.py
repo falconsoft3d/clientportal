@@ -6,14 +6,12 @@ from django.http import HttpResponse
 
 def home(request):
     products = Product.objects.all().filter(is_available=True, home=True).order_by('create_date')[:8]
-    print(products)
     context = {
             'products' : products,
         }
     
     if (products.count() == 0):
         products = Product.objects.all().filter(is_available=True).order_by('create_date')[:8]
-        print(products)
         if (products.count() == 0):
             return render(request, 'new_project.html', context)
         else:
