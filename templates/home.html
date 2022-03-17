@@ -7,6 +7,8 @@
 <section class="section-intro padding-y-sm">
 <div class="container">
 
+
+
 <div class="intro-banner-wrap">
 	{% include 'includes/carousel.html' %}  
 </div>
@@ -36,13 +38,13 @@
 			{% if product.images %}
 				<a href="{{ product.get_url }}" class="img-wrap"> <img src="{{ product.images.url }}"> </a>
 			{% else %}
-				<a href="{{ product.get_url }}" class="img-wrap"> <img src="{% static 'images/no_imagen_product.png' %}""> </a>
+				<a href="{{ product.get_url }}" class="img-wrap"> <img src="{% static 'images/no_imagen_product.png' %}"> </a>
 			{% endif %}
 
 			<figcaption class="info-wrap">
 				<a href="{{ product.get_url }}" class="title">{{product.product_name}}</a>
 				{% if user.id is not None %}
-				<div class="price mt-1">{{ product.id | get_listprice:user.id }}€</div> <!-- price-wrap.// -->
+					<div class="price mt-1">{{ product.id | get_listprice:user.id }}€</div> <!-- price-wrap.// -->
 				{% endif %}
 				<br>
 				<a href="{{ product.get_url }}" class="btn btn-block btn-success">Ver Producto</a>	

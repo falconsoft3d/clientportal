@@ -3,12 +3,25 @@ from django.shortcuts import render, redirect
 from .forms import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
+from config.models import AdminBase
 
 def home(request):
     products = Product.objects.all().filter(is_available=True, home=True).order_by('create_date')[:8]
     context = {
             'products' : products,
         }
+    
+    # Admin: Revisamos el config si no lo tenemos lo creamos #
+    adminbase_count = AdminBase.objects.all().count()
+    if adminbase_count == 0:
+        admin = AdminBase()
+        admin.name = 'clientportal'
+        admin.email = 'demo@demo.com'
+        admin.phone = '+34000000000'
+        admin.street = "Calle 12"
+        admin.save()
+    # Admin #
+    
     
     if (products.count() == 0):
         products = Product.objects.all().filter(is_available=True).order_by('create_date')[:8]

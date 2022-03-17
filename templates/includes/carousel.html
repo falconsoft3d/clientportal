@@ -5,6 +5,8 @@
       <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="2" class=""></li>
     </ol>
+
+    {% if dic_data.baner01 %}
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img class="d-block w-100" data-src="holder.js/800x400?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide" alt="First slide [800x400]" 
@@ -23,6 +25,8 @@
             data-holder-rendered="true">
       </div>
     </div>
+    {% endif %}
+
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
