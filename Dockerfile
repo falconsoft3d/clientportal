@@ -2,6 +2,8 @@ FROM python:3.9-alpine
 
 RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev build-base linux-headers pcre-dev nginx jpeg-dev zlib-dev
 
+ENV DJANGO_SETTINGS_MODULE clientportal.settings
+
 RUN mkdir /app
 WORKDIR /app
 COPY conf/uwsgi.ini /app
