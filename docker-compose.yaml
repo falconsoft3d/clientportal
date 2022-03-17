@@ -1,39 +1,39 @@
 version: '3.3'
 services:
-  # django-docker:
-  #   depends_on:
-  #     - pgsql
-  #   image: falconsoft3d/clientportal:latest
-  #   environment:
-  #     DB_HOST: pgsql
-  #     DB_NAME: django-docker
-  #     DB_PASSWORD: x1234567890pass
-  #     DB_USER: postgres
-  #   networks:
-  #    - django-docker_net
-  #    - traefik
-  #   logging:
-  #     driver: json-file
-  #   deploy:
-  #     replicas: 2
-  #     labels:
-  #       traefik.http.routers.django-docker-http.middlewares: django-docker-https-redirect
-  #       traefik.http.routers.django-docker-http.rule: Host(`demo.marlonfalcon.com`)
-  #       traefik.http.routers.django-docker-http.service: django-docker
-  #       traefik.http.routers.django-docker-https.tls.certresolver: letsencrypt
-  #       traefik.http.routers.django-docker-https.entrypoints: https
-  #       traefik.http.routers.django-docker-https.rule: Host(`demo.marlonfalcon.com`)
-  #       swarmpit.service.deployment.autoredeploy: 'true'
-  #       traefik.http.routers.django-docker-https.service: django-docker
-  #       traefik.http.routers.django-docker-http.entrypoints: http
-  #       traefik.http.middlewares.django-docker-https-redirect.redirectscheme.scheme: https
-  #       traefik.enable: 'true'
-  #       traefik.http.services.django-docker.loadbalancer.server.port: '80'
-  #       traefik.http.routers.django-docker-https.tls: 'true'
+  client-portal:
+    depends_on:
+      - pgsql
+    image: falconsoft3d/clientportal:latest
+    environment:
+      DB_HOST: pgsql
+      DB_NAME: client-portal
+      DB_PASSWORD: x1234567890pass
+      DB_USER: postgres
+    networks:
+     - client-portal_net
+     - traefik
+    logging:
+      driver: json-file
+    deploy:
+      replicas: 2
+      labels:
+        traefik.http.routers.client-portal-http.middlewares: client-portal-https-redirect
+        traefik.http.routers.client-portal-http.rule: Host(`demo.marlonfalcon.com`)
+        traefik.http.routers.client-portal-http.service: client-portal
+        traefik.http.routers.client-portal-https.tls.certresolver: letsencrypt
+        traefik.http.routers.client-portal-https.entrypoints: https
+        traefik.http.routers.client-portal-https.rule: Host(`demo.marlonfalcon.com`)
+        swarmpit.service.deployment.autoredeploy: 'true'
+        traefik.http.routers.client-portal-https.service: client-portal
+        traefik.http.routers.client-portal-http.entrypoints: http
+        traefik.http.middlewares.client-portal-https-redirect.redirectscheme.scheme: https
+        traefik.enable: 'true'
+        traefik.http.services.client-portal.loadbalancer.server.port: '80'
+        traefik.http.routers.client-portal-https.tls: 'true'
   pgsql:
     image: postgres:14-alpine
     environment:
-      POSTGRES_DB: django-docker
+      POSTGRES_DB: client-portal
       POSTGRES_PASSWORD: x1234567890pass
     ports:
      - 5432:5432
