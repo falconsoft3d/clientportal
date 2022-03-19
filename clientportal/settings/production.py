@@ -3,7 +3,7 @@ from .local import *
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db_clientportal',
+        'NAME': 'client-portal',
         'HOST': 'pgsql',
         'USER' : 'odoo',
         'PASSWORD' : 'x1234567890',
