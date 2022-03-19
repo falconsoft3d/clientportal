@@ -1,0 +1,50 @@
+version: '3.3'
+services:
+  client-portal:
+    image: falconsoft3d/clientportal:staging
+    environment:
+      DB_HOST: pgsql
+      DB_NAME: client-portal
+      DB_PASSWORD: x1234567890
+      DB_USER: odoo
+    networks:
+     - client-portal_net
+     - traefik
+    logging:
+      driver: json-file
+    deploy:
+      replicas: 2
+      labels:
+        traefik.http.routers.client-portal-http.rule: Host(`staging.clientportal.marlonfalcon.com`)
+        traefik.http.services.client-portal.loadbalancer.server.port: '80'
+        traefik.http.routers.client-portal-http.service: client-portal
+        traefik.http.routers.client-portal-https.tls.certresolver: letsencrypt
+        traefik.http.routers.client-portal-https.tls: 'true'
+        swarmpit.service.deployment.autoredeploy: 'true'
+        traefik.http.routers.client-portal-https.service: client-portal
+        traefik.http.routers.client-portal-https.rule: Host(`staging.clientportal.marlonfalcon.com`)
+        traefik.http.routers.client-portal-http.middlewares: client-portal-https-redirect
+        traefik.http.routers.client-portal-http.entrypoints: http
+        traefik.http.middlewares.client-portal-https-redirect.redirectscheme.scheme: https
+        traefik.http.routers.client-portal-https.entrypoints: https
+        traefik.enable: 'true'
+  pgsql:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_DB: client-portal
+      POSTGRES_PASSWORD: x1234567890
+      POSTGRES_USER: odoo
+    volumes:
+     - client-portal_data:/var/lib/postgresql/data
+    networks:
+     - client-portal_net
+    logging:
+      driver: json-file
+networks:
+  client-portal_net:
+    driver: overlay
+  traefik:
+    external: true
+volumes:
+  client-portal_data:
+    driver: local

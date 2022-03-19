@@ -1,0 +1,22 @@
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  cicd:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build docker image
+        run: docker build -t falconsoft3d/clientportal:staging .
+      - name: Log in
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Push docker image
+        run: docker push falconsoft3d/clientportal:staging
