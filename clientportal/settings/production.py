@@ -1,4 +1,6 @@
-from .local import *
+from .base import *
+
+DEBUG = False
 
 DATABASES = {
     'default': {
