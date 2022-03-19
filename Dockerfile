@@ -17,7 +17,7 @@ ADD requirements.txt .
 RUN pip install -r /app/requirements.txt
 RUN python manage.py collectstatic --clear --traceback --noinput;
 
-CMD DJANGO_SETTINGS_MODULE=clientportal.settings.production python /app/manage.py createcachetable & \
-    DJANGO_SETTINGS_MODULE=clientportal.settings.production python /app/manage.py migrate & \
+CMD python /app/manage.py createcachetable & \
+    python /app/manage.py migrate & \
     uwsgi --ini /app/uwsgi.ini & \
     nginx
