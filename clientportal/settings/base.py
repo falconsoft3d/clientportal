@@ -47,7 +47,13 @@ INSTALLED_APPS = [
     'carts',
     'orders',
     'demo',
+    'backup',
+    'dbbackup',  # django-dbbackup
 ]
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / 'backups_files'}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
