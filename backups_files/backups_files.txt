@@ -1,0 +1,9 @@
+# Doc
+https://django-dbbackup.readthedocs.io/en/master/configuration.html
+
+# Crear respaldos
+python manage.py dbbackup
+
+
+
+python manage.py dbrestore

@@ -21,16 +21,16 @@ class MyAccountManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
         return user
-    
+
     def create_superuser(self, first_name, last_name, email, username, password):
         user = self.create_user(
-            email = self.normalize_email(email),
-            username = username,
-            first_name = first_name,
-            last_name = last_name,
-            password = password
+            email=self.normalize_email(email),
+            username=username,
+            first_name=first_name,
+            last_name=last_name,
+            password=password
         )
-        
+
         user.is_admin = True
         user.is_active = True
         user.is_staff = True
@@ -56,7 +56,7 @@ class Account(AbstractBaseUser):
     is_superadmin = models.BooleanField(default=False)
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
     
     objects = MyAccountManager()
     
