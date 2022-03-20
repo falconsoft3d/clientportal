@@ -14,10 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from . import views
 from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls import url, include
 
 handler404 = "clientportal.views.page_not_found_view"
 
@@ -26,6 +27,7 @@ urlpatterns = [
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('politicadecookies/', views.politicadecookies, name="politicadecookies"),
     path('', views.home, name="home"),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
     path('accounts/', include('accounts.urls')),
     path('store/', include('store.urls')),
     path('api/', include('api.urls')),

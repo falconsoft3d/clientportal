@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from ctypes import cast
 from pathlib import Path
 from decouple import config
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -47,7 +48,6 @@ INSTALLED_APPS = [
     'carts',
     'orders',
     'demo',
-    'backup',
     'dbbackup',  # django-dbbackup
 ]
 
@@ -134,14 +134,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
+LANGUAGES = (
+ ('en', _('English')),
+ ('es', _('Spanish')),
+)
+
 LANGUAGE_CODE = 'es-es'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
@@ -149,6 +150,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
+
+LOCALE_PATHS = (
+    BASE_DIR / 'languages/locale', )
 
 STATICFILES_DIRS = [
     'static_files',

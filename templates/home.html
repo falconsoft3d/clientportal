@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load poll_extras %}
-
+{% load i18n %}
 {%  block content %}
 <!-- ========================= SECTION MAIN ========================= -->
 <section class="section-intro padding-y-sm">
@@ -24,10 +24,9 @@
 <div class="container">
 
 <header class="section-heading">
-	<a href="{% url 'store' %}" class="btn btn-outline-primary float-right">Ver Todo</a>
-	<h3 class="section-title">Productos populares</h3>
+	<a href="{% url 'store' %}" class="btn btn-outline-primary float-right">{% trans "View all" %}</a>
+	<h3 class="section-title">{% trans "Popular products" %}</h3>
 </header><!-- sect-heading -->
-
 	
 <div class="row">
 
@@ -47,7 +46,7 @@
 					<div class="price mt-1">{{ product.id | get_listprice:user.id }}€</div> <!-- price-wrap.// -->
 				{% endif %}
 				<br>
-				<a href="{{ product.get_url }}" class="btn btn-block btn-success">Ver Producto</a>	
+				<a href="{{ product.get_url }}" class="btn btn-block btn-success">{% trans "View product" %}</a>
 			</figcaption>
 		</div>
 	</div> <!-- col.// -->

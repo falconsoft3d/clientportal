@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <header class="section-header">
     <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
     <div class="container">
@@ -7,18 +8,30 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarTop4">
         <ul class="navbar-nav mr-auto">
+
+
             <li class="nav-item dropdown">
-                 <a href="#" class="nav-link">{{ dic_data.name }} / {{ dic_data.street }}</a>  
+		 	<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">   {% trans "Spanish" %} </a>
+
+                <ul class="dropdown-menu small">
+				    <li><a class="dropdown-item" href="#">{% trans "English" %}</a></li>
+				    <li><a class="dropdown-item" href="#">{% trans "Spanish" %}</a></li>
+		        </ul>
+		    </li>
+
+            <li class="nav-item dropdown">
+                 <a href="#" class="nav-link">{{ dic_data.name }} / {{ dic_data.street }}</a>
             </li>
+
         </ul>
         <ul class="navbar-nav">
-            <li><a href="{% url 'contact' %}" class="nav-link"> <i class="fa fa-envelope"></i> Contacto </a></li>
-            <li><a href="tel: {{ dic_data.phone }}" class="nav-link"> <i class="fa fa-phone"></i> Llámanos</a></li>
+            <li><a href="{% url 'contact' %}" class="nav-link"> <i class="fa fa-envelope"></i> {% trans "Contact" %} </a></li>
+            <li><a href="tel: {{ dic_data.phone }}" class="nav-link"> <i class="fa fa-phone"></i> {% trans "Phone" %}</a></li>
         </ul> <!-- list-inline //  -->
       </div> <!-- navbar-collapse .// -->
     </div> <!-- container //  -->
     </nav>
-    
+
     <section class="header-main border-bottom">
         <div class="container">
     <div class="row align-items-center">
@@ -33,16 +46,16 @@
         </div>
         <div class="col-lg col-sm col-md col-6 flex-grow-0">
             <div class="category-wrap dropdown d-inline-block float-right">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 
-                    <i class="fa fa-bars"></i> Categorias 
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bars"></i> {% trans "Categories" %}
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{% url 'store' %}"> Todos </a>
-                   
+                    <a class="dropdown-item" href="{% url 'store' %}"> {% trans "All" %} </a>
+
                         {% for category in links %}
                         <a class="dropdown-item" href="{{ category.get_url }}"> {{category.category_name}} </a>
                         {% endfor %}
-                    
+
                 </div>
             </div>  <!-- category-wrap.// -->
         </div> <!-- col.// -->
@@ -50,10 +63,10 @@
         <div class="col-lg  col-md-6 col-sm-12 col">
             <form action="{% url 'search' %}" class="search">
                 <div class="input-group w-100">
-                    <input type="text" class="form-control" 
+                    <input type="text" class="form-control"
                     name="keyword"
                     style="width:60%;" placeholder="Buscar Productos">
-                    
+
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="submit">
                         <i class="fa fa-search"></i>
@@ -67,24 +80,24 @@
         {% endif %}
         <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
-                        
+
                         {% if user.id is None %}
                         <div class="widget-header">
-                            <small class="title text-muted">Bienvenido visitante!</small>
-                            <div> 
+                            <small class="title text-muted">{% trans "Welcome visitor" %}</small>
+                            <div>
                                 <a href="{% url 'login' %}">Login</a> <span class="dark-transp">
                             </div>
                         </div>
                         {% else  %}
                         <div class="widget-header">
                             <small class="title text-muted">Bienvenido {{ user.first_name }}!</small>
-                            <div> 
+                            <div>
                                 <a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp"> | </span>
                                 <a href="{% url 'logout' %}"> Salir</a>
                             </div>
                         </div>
                         {% endif %}
-                        
+
                         {% if user.id is not None %}
                         <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
                             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
