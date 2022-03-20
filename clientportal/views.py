@@ -60,3 +60,7 @@ def contact(request):
             return redirect ("home")
     form = ContactForm()
     return render(request, "contact.html", {'form':form})
+
+
+def page_not_found_view(request, exception):
+    return render(request, '404.html', status=404)

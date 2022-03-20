@@ -19,6 +19,8 @@ from . import views
 from django.conf.urls.static import static
 from django.conf import settings
 
+handler404 = "clientportal.views.page_not_found_view"
+
 urlpatterns = [
     path('secureadmin/', admin.site.urls),
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
