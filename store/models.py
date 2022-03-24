@@ -6,7 +6,14 @@ from accounts.models import Account
 from django.db.models import Avg, Count
 from accounts.get_username import get_username
 
-# Create your models here.
+class Color(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    sequence = models.IntegerField(default=0)
+
+class Size(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    sequence = models.IntegerField(default=0)
+
 class Product(models.Model):
     product_name = models.CharField(max_length=200, unique=True)
     slug = models.CharField(max_length=200, unique=True)
@@ -20,6 +27,8 @@ class Product(models.Model):
     modified_date = models.DateTimeField(auto_now=True)
     code = models.CharField(max_length=13, default="-")
     home = models.BooleanField(default=False)
+    color = models.ForeignKey(Color, on_delete=models.CASCADE, null=True)
+    size = models.ForeignKey(Size, on_delete=models.CASCADE, null=True)
     
     def get_url(self):
         return reverse('product_detail', args=[self.category.slug, self.slug])

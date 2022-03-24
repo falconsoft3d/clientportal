@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, ProductGallery, AccountPrice, AccountFavorite
+from .models import Product, ProductGallery, AccountPrice, AccountFavorite, Color, Size
 import admin_thumbnails
 
 @admin_thumbnails.thumbnail('image')
@@ -18,5 +18,7 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductGallery)
 admin.site.register(AccountPrice)
 admin.site.register(AccountFavorite)
+admin.site.register(Color)
+admin.site.register(Size)
     
 

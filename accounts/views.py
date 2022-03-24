@@ -17,9 +17,9 @@ from ticket.forms import TicketForm
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from orders.models import Order, OrderProduct
-from carts.views import add_cart
 from store.views import add_favorites
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from store.models import Product
+from carts.models import Cart, CartItem
 
 # Create your views here.
 
@@ -282,6 +282,36 @@ def view_ticket(request, id):
         'ticket' : ticket,
     }
     return render(request, 'accounts/view_ticket.html', context)
+
+
+def add_cart(request, product_id):
+    product = Product.objects.get(id=product_id)
+    current_user = request.user
+
+    try:
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+
+    except Cart.DoesNotExist:
+        cart = Cart.objects.create(
+            cart_id=_cart_id(request)
+        )
+    cart.save()
+
+    try:
+        cart_item = CartItem.objects.get(product=product, cart=cart)
+        cart_item.quantity += 1
+        cart_item.save()
+
+    except CartItem.DoesNotExist:
+        cart_item = CartItem.objects.create(
+            product=product,
+            quantity=1,
+            cart=cart,
+            user=current_user
+        )
+        cart_item.save()
+    return redirect('cart')
+
 
 
 @login_required
