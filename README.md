@@ -58,7 +58,7 @@ ok - Producto sin Imagen
 - Integrar con Odoo
 - Lista de Precios en API
 - Lista de Precios
-- Deploy Docker
+ok - Deploy Docker
 - Tabla con variantes en la compra
 - Dejar un solo nombre
 - comision de venta
