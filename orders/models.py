@@ -55,7 +55,7 @@ class OrderProduct(models.Model):
     update_at = models.DateTimeField(auto_now=True)
     
     def subtotal(self):
-        return self.product.price * self.quantity
+        return self.product_price * self.quantity
     
     def __str__(self):
         return self.product.product_name

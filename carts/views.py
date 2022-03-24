@@ -47,16 +47,20 @@ def remove_cart_item(request, product_id, cart_item_id):
 def cart(request, total=0, quantity=0, cart_items=None):
     tax = 0
     grand_total = 0
+    current_user = request.user
+
     try:
         if request.user.is_authenticated:
             cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+
         else:
             cart = Cart.objects.get(cart_id=_cart_id(request))
             cart_items = CartItem.objects.filter(cart=cart, is_active=True)
-        
-        
+
         for cart_item in cart_items:
-            total += (cart_item.product.price * cart_item.quantity)
+            cart_item.list_price = Product.get_list_price(cart_item.product.id, current_user.id)
+            cart_item.subtotal = cart_item.list_price * cart_item.quantity
+            total += (cart_item.list_price * cart_item.quantity)
             quantity += cart_item.quantity
             
         tax = (21*total)/100
@@ -66,7 +70,10 @@ def cart(request, total=0, quantity=0, cart_items=None):
         pass # Solo ignora
     
     Round = lambda x, n: eval('"%.'+str(int(n))+'f" % '+repr(int(x)+round(float('.'+str(float(x)).split('.')[1]),n)))
-    
+
+    print("cart_items")
+    print(cart_items)
+
     context = {
         'total' : total,
         'quantity' : quantity,
@@ -109,7 +116,7 @@ def add_cart(request, product_id):
 @login_required(login_url='login')
 def checkout(request, total=0, quantity=0, cart_items=None):
     userprofile = get_object_or_404(UserProfile, user=request.user)
-    
+    current_user = request.user
     tax = 0
     grand_total = 0
     try:
@@ -118,8 +125,11 @@ def checkout(request, total=0, quantity=0, cart_items=None):
         else:
             cart = Cart.objects.get(cart_id=_cart_id(request))
             cart_items = CartItem.objects.filter(cart=cart, is_active=True)
+
         for cart_item in cart_items:
-            total += (cart_item.product.price * cart_item.quantity)
+            cart_item.list_price = Product.get_list_price(cart_item.product.id, current_user.id)
+            cart_item.subtotal = cart_item.list_price * cart_item.quantity
+            total += (cart_item.list_price * cart_item.quantity)
             quantity += cart_item.quantity
             
         tax = (21*total)/100

@@ -60,9 +60,9 @@
                         </div> <!-- col.// -->
         </td>
         <td> 
-            <div class="price-wrap"> 
-                <var class="price"> {{ cart_item.subtotal }} €</var> 
-                <small class="text-muted">{{ cart_item.product.id | get_listprice:user.id }} € cada uno </small> 
+            <div class="price-wrap">
+                <var class="price"> {{ cart_item.subtotal }}  €</var>
+                <small class="text-muted">{{ cart_item.list_price }} € cada uno </small>
             </div> <!-- price-wrap .// -->
         </td>
         <td class="text-right"> 

@@ -25,7 +25,8 @@ def place_order(request, total=0, quantity=0):
     tax = 0
     
     for cart_item in cart_items:
-        total  += (cart_item.product.price * cart_item.quantity)
+        price = Product.get_list_price(cart_item.product.id, current_user.id)
+        total += (price * cart_item.quantity)
         quantity += cart_item.quantity
         
     tax = (2*total)/100
@@ -69,7 +70,7 @@ def place_order(request, total=0, quantity=0):
                 orderproduct.user_id = request.user.id
                 orderproduct.product_id = item.product_id
                 orderproduct.quantity = item.quantity
-                orderproduct.product_price = item.product.price
+                orderproduct.product_price = Product.get_list_price(item.product.id, current_user.id)
                 orderproduct.ordered = True
                 orderproduct.save()
                 
@@ -102,10 +103,8 @@ def place_order(request, total=0, quantity=0):
     
     
 def order_complete(request):
+    current_user = request.user
     order_number = request.GET.get('order_number')
-    
-    print("order_complete")
-    print(order_number)
     
     try:
         order = Order.objects.get(order_number=order_number, is_ordered=True)
@@ -113,7 +112,7 @@ def order_complete(request):
         
         subtotal = 0
         for i in ordered_products:
-            subtotal += i.product_price * i.quantity
+            subtotal += Product.get_list_price(i.id, current_user.id) * i.quantity
         
         context = {
             'order' : order,

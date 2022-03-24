@@ -57,7 +57,7 @@ ok - Producto sin Imagen
 - Simplificar el regitro
 - Integrar con Odoo
 - Lista de Precios en API
-- Lista de Precios
+ok - Lista de Precios
 ok - Deploy Docker
 - Tabla con variantes en la compra
 - Dejar un solo nombre

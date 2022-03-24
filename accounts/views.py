@@ -256,14 +256,9 @@ def delete_ticket(request, id):
 @login_required
 def my_orders(request):
     orders = Order.objects.filter(user=request.user).order_by('-created_at')
-    # paginator = Paginator(orders, 10)
-    # page = request.GET.get('page')
-    # paged_orders = paginator.get_page(page)
-    # order_count = orders.count()
     
     context = {
         'orders' : orders,
-        # 'order_count' : order_count,
     }
     return render(request, 'accounts/my_orders.html', context)
 
@@ -272,6 +267,7 @@ def my_orders(request):
 @login_required
 def view_order(request, id):
     order_items = OrderProduct.objects.filter(order=id)
+
     context = {
         'order_items' : order_items,
         'order' : id,
