@@ -10,9 +10,15 @@ class Color(models.Model):
     name = models.CharField(max_length=50, unique=True)
     sequence = models.IntegerField(default=0)
 
+    def __str__(self):
+        return self.name
+
 class Size(models.Model):
     name = models.CharField(max_length=50, unique=True)
     sequence = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     product_name = models.CharField(max_length=200, unique=True)
