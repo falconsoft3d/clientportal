@@ -22,7 +22,7 @@ def store(request, category_slug=None):
         id_list = favorites_products.values_list('product', flat=True)
         
         # PENDIENTE
-        products = Product.objects.filter(is_available=True, id__in=id_list ).order_by('-create_date')
+        products = Product.objects.filter(is_available=True, id__in=id_list, parent=0).order_by('-create_date')
         
         # Paginamos
         paginator = Paginator(products, product_by_page)
@@ -32,13 +32,13 @@ def store(request, category_slug=None):
     else:
         if category_slug != None :
             categories = get_object_or_404(Category, slug=category_slug)
-            products = Product.objects.filter(category=categories, is_available=True).order_by('-create_date')
+            products = Product.objects.filter(category=categories, is_available=True, parent=0).order_by('-create_date')
             paginator = Paginator(products, product_by_page)
             page = request.GET.get('page')
             paged_products = paginator.get_page(page)
             product_count = products.count()
         else:
-            products = Product.objects.all().filter(is_available=True).order_by('-create_date')
+            products = Product.objects.all().filter(is_available=True, parent=0).order_by('-create_date')
             paginator = Paginator(products, product_by_page)
             page = request.GET.get('page')
             paged_products = paginator.get_page(page)

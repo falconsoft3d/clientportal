@@ -33,8 +33,9 @@ class Product(models.Model):
     modified_date = models.DateTimeField(auto_now=True)
     code = models.CharField(max_length=13, default="-")
     home = models.BooleanField(default=False)
-    color = models.ForeignKey(Color, on_delete=models.CASCADE, null=True)
-    size = models.ForeignKey(Size, on_delete=models.CASCADE, null=True)
+    color = models.ForeignKey(Color, on_delete=models.CASCADE, null=True, blank=True)
+    size = models.ForeignKey(Size, on_delete=models.CASCADE, null=True, blank=True)
+    parent = models.IntegerField(default=0)
     
     def get_url(self):
         return reverse('product_detail', args=[self.category.slug, self.slug])
