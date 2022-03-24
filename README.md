@@ -53,7 +53,7 @@ ok - Poder visualizar la orden cuando compro
 ok - Productos favoritos
 ok - Volver a comprar
 ok - Limpiar carro
-- Producto sin Imagen
+ok - Producto sin Imagen
 - Simplificar el regitro
 - Integrar con Odoo
 - Lista de Precios en API
