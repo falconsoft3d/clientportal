@@ -2,11 +2,13 @@ from email import message
 from django.shortcuts import get_object_or_404, render, redirect
 from category.models import Category
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.db.models import Q
+from django.db.models import Q, Manager
 from django.contrib import messages
 from .models import Product, ProductGallery, AccountFavorite, AccountPrice
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+
+from .services import build_variant_structure
 
 
 def store(request, category_slug=None):
@@ -60,40 +62,39 @@ def store(request, category_slug=None):
 
 def product_detail(request, category_slug, product_slug):
     current_user = request.user
-    try:
-        single_product = Product.objects.get(
-            category__slug=category_slug, slug=product_slug)
-        # in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request), product=single_product).exists()
 
-    except Exception as e:
-        raise e
+    single_product = Product.objects.filter(
+        category__slug=category_slug,
+        slug=product_slug
+    )
 
-    # if request.user.is_authenticated:
-    #     try:
-    #         orderproduct = OrderProduct.objects.filter(user=request.user, product_id=single_product.id).exists()
-    #     except OrderProduct.DoesNotExist:
-    #         orderproduct = None
-    # else:
-    #      orderproduct = None
-    # reviews = ReviewRating.objects.filter(product_id=single_product.id, status=True)
+    if single_product:
+        single_product = single_product.first()
 
     product_gallery = ProductGallery.objects.filter(
-        product_id=single_product.id)
+        product_id=single_product.id
+    )
+
     if request.user.is_anonymous:
         favorites_product_count = 0
     else:
         favorites_product_count = AccountFavorite.objects.filter(
-            account=current_user, product=single_product.id).count
+            account=current_user,
+            product=single_product.id
+        ).count
 
     price = single_product.price
 
-    try:
-        account_price = AccountPrice.objects.get(
-            product=single_product.id, account=current_user)
-        if account_price:
-            price = account_price.listprice
-    except:
-        pass
+    account_price = AccountPrice.objects.filter(
+        product=single_product.id,
+        account=current_user
+    )
+
+    if account_price:
+        price = account_price.listprice
+
+    if single_product.is_parent:
+        variants_structure = build_variant_structure(single_product)
 
     context = {
         'single_product': single_product,

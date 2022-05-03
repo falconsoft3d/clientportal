@@ -45,8 +45,33 @@ class Product(models.Model):
     def get_url(self):
         return reverse('product_detail', args=[self.category.slug, self.slug])
 
+    @property
+    def is_a_variant(self):
+        return self.parent is not None
+
+    @property
+    def variants(self):
+        return Product.objects.filter(parent=self.id)
+
+    @property
+    def has_variants(self):
+        return self.variants.count() > 0
+
+    @property
+    def is_parent(self):
+        return not self.is_a_variant and self.has_variants
+
+    def position(self, sizes: list, colors: list) -> tuple:
+        return (
+            sizes.index(self.size.id),
+            colors.index(self.color.id)
+        )
+
     def __str__(self):
-        return self.product_name
+        if not self.is_a_variant:
+            return self.product_name
+
+        return f'Color: {self.color.name}, Size: {self.size.name}'
 
     def get_list_price(product, user):
         product_obj = Product.objects.get(id=product)
@@ -64,7 +89,8 @@ class Product(models.Model):
 
 class ProductGallery(models.Model):
     product = models.ForeignKey(
-        Product, default=None, on_delete=models.CASCADE)
+        Product, default=None, on_delete=models.CASCADE
+    )
     image = models.ImageField(upload_to='store/products', max_length=255)
 
     def __str__(self):
