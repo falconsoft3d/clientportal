@@ -23,18 +23,20 @@ from carts.models import Cart, CartItem
 
 # Create your views here.
 
+
 @login_required(login_url='login')
 def dashboard(request):
-    orders = Order.objects.order_by('created_at').filter(user_id=request.user.id)
+    orders = Order.objects.order_by(
+        'created_at').filter(user_id=request.user.id)
     orders_count = orders.count()
-    userprofile = UserProfile.objects.get(user_id = request.user.id)
-    
+    userprofile = UserProfile.objects.get(user_id=request.user.id)
+
     context = {
-        'userprofile' : userprofile,
-        'orders_count' : orders_count,
-        'orders' : orders,
+        'userprofile': userprofile,
+        'orders_count': orders_count,
+        'orders': orders,
     }
-    
+
     return render(request, 'accounts/dashboard.html', context)
 
 
@@ -42,31 +44,30 @@ def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-        
+
         user = auth.authenticate(email=email, password=password)
-        
+
         if user is not None:
             auth.login(request, user)
             messages.success(request, 'Has iniciado sesion correctamente')
-            
+
             url = request.META.get('HTTP_REFERER')
-            
+
             try:
                 query = requests.utils.urlparse(url).query
-                params = dict(x.split('=')  for x in query.split('&') )
+                params = dict(x.split('=') for x in query.split('&'))
                 if 'next' in params:
                     nextPage = params['next']
                     return redirect(nextPage)
             except:
                 return redirect('dashboard')
-            
+
             return redirect('dashboard')
         else:
             messages.error(request, 'Las credenciales son incorrecta')
             return redirect('login')
-    
-    return render(request, 'accounts/login.html')
 
+    return render(request, 'accounts/login.html')
 
 
 @login_required(login_url='login')
@@ -81,34 +82,33 @@ def forgotpassword(request):
         email = request.POST['email']
         if Account.objects.filter(email=email).exists():
             user = Account.objects.get(email__exact=email)
-            
+
             current_site = get_current_site(request)
             mail_subject = 'Resetear Password'
             body = render_to_string('accounts/reset_password_email.html', {
-                "user" : user,
-                "domain" : current_site,
-                'uid' : urlsafe_base64_encode(force_bytes(user.pk)),
-                'token' : default_token_generator.make_token(user),
+                "user": user,
+                "domain": current_site,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user),
             })
             to_email = email
             send_email = EmailMessage(mail_subject, body, to=[to_email])
             send_email.send()
-            
-            messages.success(request, 'Un email fue enviado a tu bandeja de entrada')
-            
+
+            messages.success(
+                request, 'Un email fue enviado a tu bandeja de entrada')
+
             return redirect('login')
         else:
             messages.error(request, 'La cuenta no existe')
             return redirect('forgotpassword')
-            
-    
-    return render(request, 'accounts/forgotpassword.html')
 
+    return render(request, 'accounts/forgotpassword.html')
 
 
 def register(request):
     form = RegistrationForm()
-    
+
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -123,34 +123,31 @@ def register(request):
                                                email=email, username=username, password=password)
             user.phone_number = phone_number
             user.save()
-            
-            
+
             # Generar un record en UserProfile
             profile = UserProfile()
             profile.user_id = user.id
             profile.profile_picture = 'default/default-user.jpeg'
             profile.save()
-            
-            
+
             # Envio de Email
             current_site = get_current_site(request)
             mail_subject = 'Por favor activa tu cuenta'
             body = render_to_string('accounts/account_verification_email.html', {
-                "user" : user,
-                "domain" : current_site,
-                'uid' : urlsafe_base64_encode(force_bytes(user.pk)),
-                'token' : default_token_generator.make_token(user),
+                "user": user,
+                "domain": current_site,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user),
             })
             to_email = email
             send_email = EmailMessage(mail_subject, body, to=[to_email])
             send_email.send()
-            
-            
+
             # messages.success(request, 'Se regitro el usuario exitosamente')
             return redirect("/accounts/login/?command=verification&email="+email)
-            
+
     context = {
-        'form' : form
+        'form': form
     }
     return render(request, 'accounts/register.html', context)
 
@@ -162,22 +159,24 @@ def change_password(request):
         new_password = request.POST['new_password']
         confirm_password = request.POST['confirm_password']
         user = Account.objects.get(username__exact=request.user.username)
-        
+
         if new_password == confirm_password:
             success = user.check_password(current_password)
             if success:
                 user.set_password(new_password)
                 user.save()
-                
-                messages.success(request, 'Su contraseña a cambiado correctamente')
+
+                messages.success(
+                    request, 'Su contraseña a cambiado correctamente')
                 return redirect('change_password')
             else:
-                messages.error(request, 'Por favor ingrese una contraseña valida')
+                messages.error(
+                    request, 'Por favor ingrese una contraseña valida')
                 return redirect('change_password')
         else:
             messages.error(request, 'El password no coicid con el actual')
             return redirect('change_password')
-        
+
     return render(request, 'accounts/change_password.html')
 
 
@@ -187,24 +186,24 @@ def edit_profile(request):
     # Actualizar o crear perfil
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
-        profile_form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
+        profile_form = UserProfileForm(
+            request.POST, request.FILES, instance=userprofile)
         if user_form.is_valid and profile_form.is_valid():
             user_form.save()
             profile_form.save()
             messages.success(request, 'Su información fue guardada con exito')
             return redirect('edit_profile')
-        
+
     else:
         user_form = UserForm(instance=request.user)
         profile_form = UserProfileForm(instance=userprofile)
-        
-    
+
     context = {
-        'user_form' : user_form,
-        'profile_form' :  profile_form,
-        'userprofile' : userprofile
+        'user_form': user_form,
+        'profile_form':  profile_form,
+        'userprofile': userprofile
     }
-    
+
     return render(request, 'accounts/edit_profile.html', context)
 
 
@@ -212,9 +211,10 @@ def edit_profile(request):
 def my_tickets(request):
     tickets = Ticket.objects.filter(user=request.user).order_by('-create_date')
     context = {
-        'tickets' : tickets,
+        'tickets': tickets,
     }
     return render(request, 'accounts/my_tickets.html', context)
+
 
 @login_required
 def new_ticket(request):
@@ -224,26 +224,27 @@ def new_ticket(request):
             current_user = request.user
             subject = "Ticket:" + form.cleaned_data['title']
             body = {
-                'text':form.cleaned_data['text'], 
+                'text': form.cleaned_data['text'],
             }
             message = "\n".join(body.values())
             try:
-                send_mail(subject, message, 'mfalcon@falconsolutions.cl', ['mfalcon@falconsolutions.cl']) 
+                send_mail(subject, message, 'mfalcon@falconsolutions.cl',
+                          ['mfalcon@falconsolutions.cl'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
-           
-            """ Salvando el ticket """ 
+
+            """ Salvando el ticket """
             ticket = Ticket()
             ticket.name = form.cleaned_data['title']
             ticket.text = form.cleaned_data['text']
             ticket.user = current_user
             ticket.save()
             messages.success(request, 'Su ticket se ha creado correctamente')
-            
-            
-            return redirect ("my_tickets")
+
+            return redirect("my_tickets")
     form = TicketForm()
-    return render(request, "accounts/new_ticket.html", {'form':form})
+    return render(request, "accounts/new_ticket.html", {'form': form})
+
 
 @login_required
 def delete_ticket(request, id):
@@ -256,12 +257,11 @@ def delete_ticket(request, id):
 @login_required
 def my_orders(request):
     orders = Order.objects.filter(user=request.user).order_by('-created_at')
-    
+
     context = {
-        'orders' : orders,
+        'orders': orders,
     }
     return render(request, 'accounts/my_orders.html', context)
-
 
 
 @login_required
@@ -269,8 +269,8 @@ def view_order(request, id):
     order_items = OrderProduct.objects.filter(order=id)
 
     context = {
-        'order_items' : order_items,
-        'order' : id,
+        'order_items': order_items,
+        'order': id,
     }
     return render(request, 'accounts/view_order.html', context)
 
@@ -279,7 +279,7 @@ def view_order(request, id):
 def view_ticket(request, id):
     ticket = Ticket.objects.get(id=id)
     context = {
-        'ticket' : ticket,
+        'ticket': ticket,
     }
     return render(request, 'accounts/view_ticket.html', context)
 
@@ -313,13 +313,13 @@ def add_cart(request, product_id):
     return redirect('cart')
 
 
-
 @login_required
 def order_to_cart(request, id):
     order_items = OrderProduct.objects.filter(order=id)
     for item in order_items:
         add_cart(request, item.product.id)
     return redirect('cart')
+
 
 @login_required
 def order_to_favorite(request, id):

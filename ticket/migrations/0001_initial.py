@@ -17,13 +17,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Ticket',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(blank=True, max_length=200)),
                 ('text', models.TextField(blank=True)),
                 ('create_date', models.DateTimeField(auto_now_add=True)),
                 ('modified_date', models.DateTimeField(auto_now=True)),
-                ('status', models.CharField(choices=[('New', 'Nuevo'), ('Sent', 'Enviado'), ('Sale', 'Pedido de Venta'), ('dispatched', 'Despachado'), ('Invoiced', 'Facturado'), ('Cancel', 'Cancelado')], default='New', max_length=50)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('status', models.CharField(choices=[('New', 'Nuevo'), ('Sent', 'Enviado'), ('Sale', 'Pedido de Venta'), (
+                    'dispatched', 'Despachado'), ('Invoiced', 'Facturado'), ('Cancel', 'Cancelado')], default='New', max_length=50)),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

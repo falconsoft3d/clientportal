@@ -18,7 +18,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Order',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('order_number', models.CharField(max_length=20)),
                 ('first_name', models.CharField(max_length=50)),
                 ('last_name', models.CharField(max_length=50)),
@@ -32,26 +33,32 @@ class Migration(migrations.Migration):
                 ('order_note', models.CharField(blank=True, max_length=100)),
                 ('order_total', models.FloatField()),
                 ('tax', models.FloatField()),
-                ('status', models.CharField(choices=[('New', 'Nuevo'), ('Accepted', 'Aceptado'), ('Completed', 'Completado'), ('Cancel', 'Cancelado')], default='New', max_length=50)),
+                ('status', models.CharField(choices=[('New', 'Nuevo'), ('Accepted', 'Aceptado'), (
+                    'Completed', 'Completado'), ('Cancel', 'Cancelado')], default='New', max_length=50)),
                 ('ip', models.CharField(blank=True, max_length=20)),
                 ('is_ordered', models.BooleanField(default=False)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('update_at', models.DateTimeField(auto_now=True)),
-                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(
+                    null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
             name='OrderProduct',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('quantity', models.IntegerField()),
                 ('product_price', models.FloatField()),
                 ('ordered', models.BooleanField(default=False)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('update_at', models.DateTimeField(auto_now=True)),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='orders.order')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='store.product')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('order', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='orders.order')),
+                ('product', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='store.product')),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

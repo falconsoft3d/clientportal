@@ -16,9 +16,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AccountFavorite',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('account', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('product', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='store.product')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('account', models.ForeignKey(
+                    default=None, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('product', models.ForeignKey(
+                    default=None, on_delete=django.db.models.deletion.CASCADE, to='store.product')),
             ],
         ),
     ]

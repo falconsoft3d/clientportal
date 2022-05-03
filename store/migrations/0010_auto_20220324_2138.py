@@ -14,7 +14,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Color',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=50, unique=True)),
                 ('sequence', models.IntegerField(default=0)),
             ],
@@ -22,7 +23,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Size',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=50, unique=True)),
                 ('sequence', models.IntegerField(default=0)),
             ],
@@ -35,11 +37,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='color',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='store.color'),
+            field=models.ForeignKey(
+                null=True, on_delete=django.db.models.deletion.CASCADE, to='store.color'),
         ),
         migrations.AddField(
             model_name='product',
             name='size',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='store.size'),
+            field=models.ForeignKey(
+                null=True, on_delete=django.db.models.deletion.CASCADE, to='store.size'),
         ),
     ]

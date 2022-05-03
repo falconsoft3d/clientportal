@@ -16,8 +16,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Account',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('password', models.CharField(max_length=128, verbose_name='password')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('password', models.CharField(
+                    max_length=128, verbose_name='password')),
                 ('first_name', models.CharField(max_length=50)),
                 ('last_name', models.CharField(max_length=50)),
                 ('username', models.CharField(max_length=50, unique=True)),
@@ -37,10 +39,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserProfile',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('address_line_1', models.CharField(blank=True, max_length=100)),
                 ('address_line_2', models.CharField(blank=True, max_length=100)),
-                ('profile_picture', models.ImageField(blank=True, upload_to='userprofile/')),
+                ('profile_picture', models.ImageField(
+                    blank=True, upload_to='userprofile/')),
                 ('city', models.CharField(blank=True, max_length=20)),
                 ('state', models.CharField(blank=True, max_length=20)),
                 ('country', models.CharField(blank=True, max_length=20)),
@@ -49,7 +53,8 @@ class Migration(migrations.Migration):
                 ('zip', models.CharField(blank=True, max_length=100)),
                 ('bank_account', models.CharField(blank=True, max_length=100)),
                 ('bank', models.CharField(blank=True, max_length=100)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(
+                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]

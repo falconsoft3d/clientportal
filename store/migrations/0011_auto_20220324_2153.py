@@ -19,11 +19,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='product',
             name='color',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='store.color'),
+            field=models.ForeignKey(
+                blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='store.color'),
         ),
         migrations.AlterField(
             model_name='product',
             name='size',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='store.size'),
+            field=models.ForeignKey(
+                blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='store.size'),
         ),
     ]

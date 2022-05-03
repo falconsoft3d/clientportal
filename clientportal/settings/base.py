@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+from django.contrib.messages import constants as messages
 from ctypes import cast
 from pathlib import Path
 from decouple import config
@@ -135,8 +136,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGES = (
- ('en', _('English')),
- ('es', _('Spanish')),
+    ('en', _('English')),
+    ('es', _('Spanish')),
 )
 
 LANGUAGE_CODE = 'es-es'
@@ -161,7 +162,6 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
