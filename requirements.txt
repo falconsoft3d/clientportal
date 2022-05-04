@@ -16,3 +16,6 @@ sqlparse==0.4.2
 urllib3==1.26.8
 uwsgi
 django-dbbackup
+djangorestframework==3.13.1
+Markdown==3.3.6
+django-filter==21.1
