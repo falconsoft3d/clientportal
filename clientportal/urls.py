@@ -21,11 +21,7 @@ from django.conf import settings
 from django.conf.urls import url, include
 
 from apiv1.route import router_api
-# from category.api.route import router_categories
-
-
 handler404 = "clientportal.views.page_not_found_view"
-
 
 urlpatterns = [
     path('secureadmin/', admin.site.urls),
