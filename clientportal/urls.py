@@ -20,10 +20,11 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import url, include
 
-
 from store.api.route import router_product
+from category.api.route import router_categories
 
 handler404 = "clientportal.views.page_not_found_view"
+
 
 urlpatterns = [
     path('secureadmin/', admin.site.urls),
@@ -37,6 +38,8 @@ urlpatterns = [
     path('cart/', include('carts.urls')),
     path('orders/', include('orders.urls')),
     path('demo/', include('demo.urls')),
-    path('api/', include(router_product.urls)),
+
+    path('api-v1/', include(router_product.urls)),
+    path('api-v1/', include(router_categories.urls)),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
