@@ -19,3 +19,4 @@ django-dbbackup
 djangorestframework==3.13.1
 Markdown==3.3.6
 django-filter==21.1
+drf-yasg==1.20.0
