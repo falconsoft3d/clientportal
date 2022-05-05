@@ -23,6 +23,7 @@ from django.conf.urls import url, include
 from store.api.route import router_product
 from category.api.route import router_categories
 
+
 handler404 = "clientportal.views.page_not_found_view"
 
 
@@ -39,7 +40,8 @@ urlpatterns = [
     path('orders/', include('orders.urls')),
     path('demo/', include('demo.urls')),
 
-    path('api-v1/', include(router_product.urls)),
-    path('api-v1/', include(router_categories.urls)),
+    path('api/', include('accounts.api.router')),
+    path('api/', include(router_product.urls)),
+    path('api/', include(router_categories.urls)),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
