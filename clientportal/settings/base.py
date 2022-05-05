@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'demo',
     'dbbackup',  # django-dbbackup
     'rest_framework',
+    'apiv1'
 ]
 
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'

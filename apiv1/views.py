@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ViewSet, ModelViewSet
 from store.models import Product, Color, Size
-from store.api.serializers import ProductSerializer, ColorSerializer, SizeSerializer
+from apiv1.serializers import ProductSerializer, ColorSerializer, SizeSerializer
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
 
 
