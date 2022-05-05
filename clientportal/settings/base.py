@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'category',
     'ticket',
     'config',
-    'api',
     'carts',
     'orders',
     'demo',
