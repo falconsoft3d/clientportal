@@ -85,13 +85,13 @@ def product_detail(request, category_slug, product_slug):
 
     price = single_product.price
 
-    account_price = AccountPrice.objects.filter(
-        product=single_product.id,
-        account=current_user
-    )
-
-    if account_price:
-        price = account_price.listprice
+    if not current_user.is_anonymous:
+        account_price = AccountPrice.objects.filter(
+            product=single_product.id,
+            account=current_user
+        )
+        if account_price:
+            price = account_price.listprice
 
     if single_product.is_parent:
         variants_structure = build_variant_structure(single_product)
