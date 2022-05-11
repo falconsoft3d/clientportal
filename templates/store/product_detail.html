@@ -103,8 +103,11 @@
                   padding: 8px;
                 }
     </style>
-
-        <!-- Variant Table -->
+        <p>
+            --- {{ single_product.has_variants }} has_variants   ---
+        </p>
+        <!-- Comprobamos que el usuario este logeado para mostrar las variantes -->
+        {% if user.id is not None and single_product.has_variants %}
         <div class="card">
                  <div class="row no-gutters">
 
@@ -145,6 +148,7 @@
                     </table>
                  </div>
         </div> <!-- card.// -->
+        {% endif %}
 
     </div> <!-- container .//  -->
     </section>
