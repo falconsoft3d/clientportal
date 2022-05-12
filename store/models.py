@@ -54,6 +54,28 @@ class Product(models.Model):
         return Product.objects.filter(parent=self.id)
 
     @property
+    def tablevariants(self):
+        variants = Product.objects.filter(parent=self.id)
+        tablearray = []
+        counter = 0
+        for variant in variants:
+            color = 0
+            size = 0
+            stock = 0
+            # Llenamos el Color
+            if variant.color:
+                color = variant.color.id
+
+            # Llenamos el Tamaño
+            if variant.size:
+                size = variant.size.id
+
+            price = variant.price
+
+            tablearray.append([color,size,variant.stock,price])
+        return tablearray
+
+    @property
     def has_variants(self):
         return self.variants.count() > 0
 
@@ -83,7 +105,6 @@ class Product(models.Model):
                 price = account_price.listprice
         except Exception as e:
             pass
-
         return price
 
 

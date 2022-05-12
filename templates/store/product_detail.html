@@ -65,7 +65,6 @@
 
         <p>{{ single_product.description }}.</p>
           <hr>
-
           {% if not user.is_anonymous  %}
             {% if user.id is not None and favorites_product_count <= 0 %}
             <a href="{% url 'add_favorites' single_product.id %}" class="btn btn-outline-warning"><i class="fas fa-heart"></i> Agregar a Favoritos</a>
@@ -80,8 +79,7 @@
                 class="btn  btn-primary"> <i class="fas fa-shopping-cart"></i>
             <span class="text">Agregar al carro</span> 
           {% endif %}
-          
-      </article> <!-- product-info-aside .// -->
+      </article>
     </form>  
 
 
@@ -105,10 +103,12 @@
     </style>
         <p>
             --- {{ single_product.has_variants }} has_variants   ---
+            {{ single_product.tablevariants }}
         </p>
         <!-- Comprobamos que el usuario este logeado para mostrar las variantes -->
         {% if user.id is not None and single_product.has_variants %}
-        <div class="card">
+
+        <div class="card mt-2">
                  <div class="row no-gutters">
 
                      <table class="table m-2">
@@ -120,31 +120,16 @@
                           <th>XL</th>
                           <th>XXL</th>
                       </tr>
-                      <tr>
-                        <td>Azul</td>
-                        <td>11<input class="form-control" type="number" min="0">333,00 €</td>
-                        <td>2<input class="form-control" type="number" min="0">333,00 €</td>
-                        <td>2<input class="form-control" type="number" min="0">133,00 €</td>
-                        <td>3<input class="form-control" type="number" min="0">133,00 €</td>
-                        <td>4<input class="form-control" type="number" min="0">333,00 €</td>
-                      </tr>
-                      <tr>
-                        <td>Verde</td>
-                        <td>11<input class="form-control" type="number" min="0">333,00 €</td>
-                        <td>2<input class="form-control" type="number" min="0">333,00 €</td>
-                        <td>2<input class="form-control" type="number" min="0">133,00 €</td>
-                        <td>3<input class="form-control" type="number" min="0">133,00 €</td>
-                        <td>4<input class="form-control" type="number" min="0">333,00 €</td>
-                      </tr>
-
-                      <tr>
-                        <td>Blanco</td>
-                        <td>11<input class="form-control">333,00 €</td>
-                        <td>2<input class="form-control">333,00 €</td>
-                        <td>2<input class="form-control">133,00 €</td>
-                        <td>3<input class="form-control">133,00 €</td>
-                        <td>4<input class="form-control">333,00 €</td>
-                      </tr>
+                         {% for line in single_product.tablevariants %}
+                              <tr>
+                                <td>Azul</td>
+                                <td>11<input class="form-control" type="number" min="0" value="0">333,00 €</td>
+                                <td>2<input class="form-control" type="number" min="0" value="0">333,00 €</td>
+                                <td>2<input class="form-control" type="number" min="0" value="0">133,00 €</td>
+                                <td>3<input class="form-control" type="number" min="0" value="0">133,00 €</td>
+                                <td>4<input class="form-control" type="number" min="0" value="0">333,00 €</td>
+                              </tr>
+                         {% endfor %}
                     </table>
                  </div>
         </div> <!-- card.// -->
